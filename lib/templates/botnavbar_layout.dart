@@ -5,7 +5,8 @@ import 'dart:convert';
 import "package:mutuo_mobile_app/globals.dart";
 
 Future callApI(apiName) async {
-  var url = "http://10.0.2.2:5000/$apiName";
+  // var url = "http://10.0.2.2:5000/$apiName";
+  var url = "$baseurl/$apiName";
   final response =
       await http.post(Uri.parse(url), body: json.encode(userEntry));
   final decoded = json.decode(response.body) as Map<String, dynamic>;

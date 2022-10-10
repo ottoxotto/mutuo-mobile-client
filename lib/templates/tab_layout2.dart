@@ -41,8 +41,8 @@ class _Tablayout2State extends State<Tablayout2> {
   };
 
   Future<Map> callApI(String apicall) async {
-    var url = "http://10.0.2.2:5000/$apicall";
-    // var url = "https://invest-immo.netlify.app/$apicall";
+    // var url = "http://10.0.2.2:5000/$apicall";
+    var url = "$baseurl/$apicall";
     final response = await http.post(Uri.parse(url),
         headers: httpHeaders, body: json.encode(userEntry));
     final decoded = json.decode(response.body) as Map<String, dynamic>;
