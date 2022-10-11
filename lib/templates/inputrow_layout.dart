@@ -6,9 +6,11 @@ import "package:mutuo_mobile_app/globals.dart";
 class InputRow extends StatefulWidget {
   final String cellTitle;
   final String iconName;
+  final int formKeyNumb;
 
   const InputRow({
     Key? key,
+    required this.formKeyNumb,
     required this.cellTitle,
     required this.iconName,
   }) : super(key: key);
@@ -21,14 +23,12 @@ class _InputRowState extends State<InputRow> {
   TextEditingController userInput = TextEditingController();
   String text = "";
 
-  final _formkeys = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Container(
       // here put container into Expanded to fill the scaffold vertically
       alignment: Alignment.center,
-      margin: EdgeInsets.all(Styles.defaultPadding / 2),
+      margin: EdgeInsets.all(Styles.defaultPadding / 3),
       padding: EdgeInsets.all(Styles.defaultPadding),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
@@ -54,10 +54,16 @@ class _InputRowState extends State<InputRow> {
           Expanded(
             flex: 2,
             child: Form(
-              key: _formkeys,
+              key: formKeys[widget.formKeyNumb],
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 controller: userInput,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Campo Obbligatorio';
+                  }
+                  return null;
+                },
                 onChanged: (value) {
                   userEntry[widget.cellTitle] = value;
                   if (kDebugMode) {
@@ -68,6 +74,7 @@ class _InputRowState extends State<InputRow> {
                   }
                 },
                 decoration: InputDecoration(
+                  // helperText: " ",
                   focusColor: Colors.red,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
@@ -78,10 +85,13 @@ class _InputRowState extends State<InputRow> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   fillColor: Colors.grey,
+                  errorStyle: const TextStyle(
+                    color: Colors.red,
+                    fontSize: 12,
+                  ),
                   hintStyle: const TextStyle(
                     color: Colors.grey,
                     fontSize: 16,
-                    fontFamily: "Roboto-Medium",
                   ),
                 ),
               ),

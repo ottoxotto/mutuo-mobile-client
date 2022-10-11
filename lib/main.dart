@@ -11,14 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(
-    const MyApp(
-        //   initialRoute: "/home",
-        //   routes: {
-        //     "/home": (context) => const Home(),
-        //     "/IT": (context) => const Italia(),
-        //     "/DE": (context) => const Germania(),
-        //   },
-        ),
+    const MyApp(),
   );
 }
 
