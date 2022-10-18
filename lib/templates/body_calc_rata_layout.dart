@@ -3,18 +3,21 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:collection/collection.dart';
 import 'package:mutuo_mobile_app/templates/inputrow_layout.dart';
 import 'package:mutuo_mobile_app/templates/outputrow_layout.dart';
 import "package:mutuo_mobile_app/globals.dart";
 
-class ITBodyCalcLayout extends StatefulWidget {
-  const ITBodyCalcLayout({Key? key}) : super(key: key);
+Function eq = const ListEquality().equals;
+
+class ITBodyCalcRataLayout extends StatefulWidget {
+  const ITBodyCalcRataLayout({Key? key}) : super(key: key);
 
   @override
-  State<ITBodyCalcLayout> createState() => _ITBodyCalcLayoutState();
+  State<ITBodyCalcRataLayout> createState() => _ITBodyCalcRataLayoutState();
 }
 
-class _ITBodyCalcLayoutState extends State<ITBodyCalcLayout> {
+class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
   String entry = "";
   String finalResponse = "";
   final _formkey = GlobalKey<FormState>();
@@ -34,25 +37,33 @@ class _ITBodyCalcLayoutState extends State<ITBodyCalcLayout> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const InputRow(
+            InputRow(
               formKeyNumb: 0,
               cellTitle: "Finanziamento",
               iconName: "026-euro-2",
+              initialText: '',
+              formKeyName: formKeysITrata,
             ),
-            const InputRow(
+            InputRow(
               formKeyNumb: 1,
               cellTitle: "Tasso di Interesse",
               iconName: "015-interest-rate",
+              initialText: '',
+              formKeyName: formKeysITrata,
             ),
-            const InputRow(
+            InputRow(
               formKeyNumb: 2,
               cellTitle: "Anni per Calcolo Mutuo",
               iconName: "016-calendar",
+              initialText: '',
+              formKeyName: formKeysITrata,
             ),
-            const InputRow(
+            InputRow(
               formKeyNumb: 3,
               cellTitle: "Durata Anni Tasso Fisso",
               iconName: "017-time-is-money",
+              initialText: '',
+              formKeyName: formKeysITrata,
             ),
             const Divider(
               height: 50,
@@ -66,11 +77,12 @@ class _ITBodyCalcLayoutState extends State<ITBodyCalcLayout> {
             ),
             ElevatedButton(
               onPressed: () async {
-                for (int i = 0; i < formKeys.length; i++) {
-                  formKeys[i].currentState!.validate();
-                  formBool.add(formKeys[i].currentState!.validate());
+                for (int i = 0; i < formKeysITrata.length; i++) {
+                  formKeysITrata[i].currentState!.validate();
+                  formBool.add(formKeysITrata[i].currentState!.validate());
                 }
-                if (formBool == [true, true, true, true]) {
+
+                if (eq(formBool, [true, true, true, true])) {
                   var url = "$baseurl/outMutuo";
 
                   final response = await http.post(Uri.parse(url),
@@ -82,19 +94,7 @@ class _ITBodyCalcLayoutState extends State<ITBodyCalcLayout> {
                     finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
                   });
                 }
-
-                // if (formKeys[0].currentState!.validate()) {
-                //   var url = "$baseurl/outMutuo";
-
-                //   final response = await http.post(Uri.parse(url),
-                //       headers: httpHeaders, body: json.encode(userEntry));
-                //   final decoded =
-                //       json.decode(response.body) as Map<String, dynamic>;
-                //   dataTable = decoded;
-                //   setState(() {
-                //     finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
-                //   });
-                // }
+                formBool.clear();
               },
               style: ButtonStyle(
                 elevation: MaterialStateProperty.all(15),

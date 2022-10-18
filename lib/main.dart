@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/pages/home_page.dart';
 import 'package:mutuo_mobile_app/pages/it_calc_rata_page.dart';
+import 'package:mutuo_mobile_app/pages/it_calc_spese_page.dart';
 import 'package:mutuo_mobile_app/pages/it_select_page.dart';
 import 'package:mutuo_mobile_app/pages/germania_page.dart';
 import 'package:mutuo_mobile_app/pages/multi_tab_page2.dart';
@@ -35,9 +36,8 @@ class MyApp extends StatelessWidget {
         "/IT": (context) => const Italia(),
         "/DE": (context) => const Germania(),
         "/ITcalcRata": (context) => const ITCalcRataPage(),
-        "/ITcalcSpese": (context) => const ITCalcRataPage(),
+        "/ITcalcSpese": (context) => const ITCalcSpesePage(),
         "/OVTable": (context) => const TabBarWindow2(),
-        // "/OVTable1": (context) => const OverviewTab(),
       },
     );
   }

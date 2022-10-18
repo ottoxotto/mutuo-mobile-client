@@ -23,6 +23,10 @@ class InputRow extends StatefulWidget {
 }
 
 class _InputRowState extends State<InputRow> {
+  Stream<String?> initialTextUpdate() async* {
+    yield widget.initialText;
+  }
+
   TextEditingController userInput = TextEditingController();
   late List<GlobalKey<FormState>> formKeys;
 
@@ -34,12 +38,6 @@ class _InputRowState extends State<InputRow> {
       text: widget.initialText,
     );
     formKeys = widget.formKeyName;
-  }
-
-  @override
-  void dispose() {
-    userInput.dispose();
-    super.dispose();
   }
 
   @override
@@ -72,42 +70,46 @@ class _InputRowState extends State<InputRow> {
           ),
           Expanded(
             flex: 2,
-            child: Form(
-              key: formKeys[widget.formKeyNumb],
-              child: TextFormField(
-                keyboardType: TextInputType.number,
-                controller: userInput,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Campo Obbligatorio';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  userEntry[widget.cellTitle] = value;
-                },
-                decoration: InputDecoration(
-                  focusColor: Colors.red,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Colors.blue, width: 3.0),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  fillColor: Colors.grey,
-                  errorStyle: const TextStyle(
-                    color: Colors.red,
-                    fontSize: 12,
-                  ),
-                  hintStyle: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
+            child: StreamBuilder<String?>(
+                stream: initialTextUpdate(),
+                builder: (context, snapshot) {
+                  return Form(
+                    key: formKeys[widget.formKeyNumb],
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: userInput,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Campo Obbligatorio';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        userEntry[widget.cellTitle] = value;
+                      },
+                      decoration: InputDecoration(
+                        focusColor: Colors.red,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Colors.blue, width: 3.0),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        fillColor: Colors.grey,
+                        errorStyle: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 12,
+                        ),
+                        hintStyle: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  );
+                }),
           )
         ],
       ),

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/templates/appbar_layout.dart';
-import 'package:mutuo_mobile_app/templates/body_calc_rata_layout.dart';
 import 'package:mutuo_mobile_app/templates/botnavbar_layout.dart';
+import 'package:mutuo_mobile_app/templates/body_calc_spese_layout.dart';
 
-class ITCalcRataPage extends StatefulWidget {
-  const ITCalcRataPage({Key? key}) : super(key: key);
+class ITCalcSpesePage extends StatefulWidget {
+  const ITCalcSpesePage({Key? key}) : super(key: key);
 
   @override
-  State<ITCalcRataPage> createState() => _ITCalcRataPageState();
+  State<ITCalcSpesePage> createState() => _ITCalcSpesePageState();
 }
 
-class _ITCalcRataPageState extends State<ITCalcRataPage> {
+class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
         // backgroundColor: Styles.scaffoldBackgroundColor,
         appBar: AppBarLayout(title: "Mutuo in Italia"),
-        body: ITBodyCalcRataLayout(),
+        body: ITBodyCalcSpeseLayout(),
         bottomNavigationBar: BotNavBarLayout());
   }
 }
