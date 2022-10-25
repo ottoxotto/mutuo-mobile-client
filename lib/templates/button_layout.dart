@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 
 class ButtonGeneric extends StatelessWidget {
@@ -21,6 +22,7 @@ class ButtonGeneric extends StatelessWidget {
       ),
       child: ElevatedButton(
         onPressed: () {
+          userEntry = {};
           Navigator.pushNamed(context, "/$buttonlink");
         },
         style: ButtonStyle(
