@@ -19,6 +19,12 @@ class _InputComboboxState extends State<InputCombobox> {
   TextEditingController userInput = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    userEntry[widget.cellTitle] = dropdownValue;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       // here put container into Expanded to fill the scaffold vertically

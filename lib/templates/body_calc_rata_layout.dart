@@ -77,6 +77,7 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
             ),
             ElevatedButton(
               onPressed: () async {
+                formBool = [];
                 for (int i = 0; i < formKeysITrata.length; i++) {
                   formKeysITrata[i].currentState!.validate();
                   formBool.add(formKeysITrata[i].currentState!.validate());

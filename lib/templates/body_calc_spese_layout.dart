@@ -151,6 +151,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
             ),
             ElevatedButton(
               onPressed: () async {
+                formBool = [];
                 for (int i = 0; i < formKeysITspese.length; i++) {
                   formKeysITspese[i].currentState!.validate();
                   formBool.add(formKeysITspese[i].currentState!.validate());
