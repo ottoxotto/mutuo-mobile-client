@@ -43,6 +43,7 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
               iconName: "026-euro-2",
               initialText: '',
               formKeyName: formKeysITrata,
+              valueType: 'euro',
             ),
             InputRow(
               formKeyNumb: 1,
@@ -50,6 +51,7 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
               iconName: "015-interest-rate",
               initialText: '',
               formKeyName: formKeysITrata,
+              valueType: 'percentage',
             ),
             InputRow(
               formKeyNumb: 2,
@@ -57,6 +59,7 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
               iconName: "016-calendar",
               initialText: '',
               formKeyName: formKeysITrata,
+              valueType: 'years',
             ),
             InputRow(
               formKeyNumb: 3,
@@ -64,6 +67,7 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
               iconName: "017-time-is-money",
               initialText: '',
               formKeyName: formKeysITrata,
+              valueType: 'years',
             ),
             const Divider(
               height: 50,

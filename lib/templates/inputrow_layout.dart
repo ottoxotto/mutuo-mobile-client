@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import "package:mutuo_mobile_app/globals.dart";
+import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 
 class InputRow extends StatefulWidget {
   final String cellTitle;
   final String iconName;
   final int formKeyNumb;
   final String initialText;
+  final String valueType;
   final List<GlobalKey<FormState>> formKeyName;
 
   const InputRow({
@@ -16,6 +18,7 @@ class InputRow extends StatefulWidget {
     required this.iconName,
     required this.initialText,
     required this.formKeyName,
+    required this.valueType,
   }) : super(key: key);
 
   @override
@@ -23,6 +26,32 @@ class InputRow extends StatefulWidget {
 }
 
 class _InputRowState extends State<InputRow> {
+  dynamic _formatter(valueType) {
+    switch (valueType) {
+      case "euro":
+        CurrencyTextInputFormatter userInputformat = CurrencyTextInputFormatter(
+            allowNegative: false, suffix: "€", insertDecimalPoint: false);
+        return userInputformat;
+      case "percentage":
+        PercentageTextInputFormatter userInputformat =
+            PercentageTextInputFormatter(suffix: "%", decimalDigits: 2);
+        return userInputformat;
+      case "years":
+        NumberTextInputFormatter userInputformat = NumberTextInputFormatter(
+          decimalDigits: 0,
+        );
+        return userInputformat;
+      case "percentage-euro":
+        NumberTextInputFormatter userInputformat = NumberTextInputFormatter(
+          decimalDigits: 2,
+        );
+        return userInputformat;
+      default:
+        NumberTextInputFormatter userInputformat = NumberTextInputFormatter();
+        return userInputformat;
+    }
+  }
+
   TextEditingController userInput = TextEditingController();
   late List<GlobalKey<FormState>> formKeys;
 
@@ -71,10 +100,11 @@ class _InputRowState extends State<InputRow> {
             ),
           ),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Form(
               key: formKeys[widget.formKeyNumb],
               child: TextFormField(
+                inputFormatters: [_formatter(widget.valueType)],
                 keyboardType: TextInputType.number,
                 controller: userInput,
                 validator: (value) {

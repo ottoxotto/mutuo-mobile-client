@@ -34,41 +34,6 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
     "Keep-Alive": "timeout=5, max=1000"
   };
 
-  // void initializeText(dropdownValue) {
-  //   switch (dropdownValue) {
-  //     case "Prima Casa da Privato":
-  //       initRegistro = "2";
-  //       initCatastale = "50";
-  //       initIpotecaria = "50";
-  //       initIVA = "0";
-  //       break;
-  //     case "Seconda Casa da Privato":
-  //       initRegistro = "9";
-  //       initCatastale = "50";
-  //       initIpotecaria = "50";
-  //       initIVA = "0";
-  //       break;
-  //     case "Prima Casa da Costruttore":
-  //       initRegistro = "200";
-  //       initCatastale = "200";
-  //       initIpotecaria = "200";
-  //       initIVA = "4";
-  //       break;
-  //     case "Seconda Casa da Costruttore":
-  //       initRegistro = "200";
-  //       initCatastale = "200";
-  //       initIpotecaria = "200";
-  //       initIVA = "10";
-  //       break;
-  //     case "Casa di Lusso da Costruttore":
-  //       initRegistro = "200";
-  //       initCatastale = "200";
-  //       initIpotecaria = "200";
-  //       initIVA = "22";
-  //       break;
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -93,6 +58,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               iconName: "026-euro-2",
               initialText: '',
               formKeyName: formKeysITspese,
+              valueType: 'euro',
             ),
             InputRow(
               formKeyNumb: 1,
@@ -100,6 +66,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               iconName: "015-interest-rate",
               initialText: '',
               formKeyName: formKeysITspese,
+              valueType: 'percentage',
             ),
             InputRow(
               formKeyNumb: 2,
@@ -107,6 +74,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               iconName: "015-interest-rate",
               initialText: '',
               formKeyName: formKeysITspese,
+              valueType: 'percentage',
             ),
             InputRow(
               formKeyNumb: 3,
@@ -114,6 +82,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               iconName: "017-time-is-money",
               initialText: "",
               formKeyName: formKeysITspese,
+              valueType: 'percentage-euro',
             ),
             InputRow(
               formKeyNumb: 4,
@@ -121,6 +90,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               iconName: "017-time-is-money",
               initialText: '',
               formKeyName: formKeysITspese,
+              valueType: 'euro',
             ),
             InputRow(
               formKeyNumb: 5,
@@ -128,6 +98,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               iconName: "026-euro-2",
               initialText: '',
               formKeyName: formKeysITspese,
+              valueType: 'euro',
             ),
             const Divider(
               height: 50,
@@ -168,9 +139,9 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
                     finalResponse[0] =
                         decoded["AnticipoMutuo"]["0"].toStringAsFixed(0);
                     finalResponse[1] =
-                        decoded["SpesaTotIniziale"]["0"].toStringAsFixed(0);
-                    finalResponse[2] =
                         decoded["TotCosti"]["0"].toStringAsFixed(0);
+                    finalResponse[2] =
+                        decoded["SpesaTotIniziale"]["0"].toStringAsFixed(0);
                   });
                 }
               },
