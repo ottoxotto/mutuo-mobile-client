@@ -166,11 +166,11 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
                   dataTable = decoded;
                   setState(() {
                     finalResponse[0] =
-                        decoded["AnticipoMutuo"]["1"].toStringAsFixed(0);
+                        decoded["AnticipoMutuo"]["0"].toStringAsFixed(0);
                     finalResponse[1] =
-                        decoded["SpesaTotIniziale"]["1"].toStringAsFixed(0);
+                        decoded["SpesaTotIniziale"]["0"].toStringAsFixed(0);
                     finalResponse[2] =
-                        decoded["TotCosti"]["1"].toStringAsFixed(0);
+                        decoded["TotCosti"]["0"].toStringAsFixed(0);
                   });
                 }
               },
