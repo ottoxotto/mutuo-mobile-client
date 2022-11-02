@@ -22,12 +22,14 @@ class _AppBarLayoutState extends State<AppBarLayout> {
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/home");
-        },
-        icon: const Icon(Icons.home_rounded),
-        color: Colors.white,
-      ),
+          onPressed: () {
+            // Navigator.pushNamed(context, "/home");
+            Navigator.of(context).pop();
+          },
+          // icon: const Icon(Icons.home_rounded),
+          icon: const ImageIcon(AssetImage("assets/icons/png/back-arrow.png"),
+              // color: Colors.white,
+              size: 28)),
       backgroundColor: Styles.bgColor,
       title: Text(
         widget.title,

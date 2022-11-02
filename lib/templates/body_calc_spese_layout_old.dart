@@ -91,6 +91,7 @@ class _ITBodyCalcSpeseOldLayoutState extends State<ITBodyCalcSpeseOldLayout> {
               iconName: "026-euro-2",
               initialText: '',
               formKeyName: formKeysITspese,
+              valueType: 'euro',
             ),
             InputRow(
               formKeyNumb: 1,
@@ -98,6 +99,7 @@ class _ITBodyCalcSpeseOldLayoutState extends State<ITBodyCalcSpeseOldLayout> {
               iconName: "015-interest-rate",
               initialText: '',
               formKeyName: formKeysITspese,
+              valueType: 'percentage',
             ),
             InputRow(
               formKeyNumb: 2,
@@ -105,6 +107,7 @@ class _ITBodyCalcSpeseOldLayoutState extends State<ITBodyCalcSpeseOldLayout> {
               iconName: "015-interest-rate",
               initialText: '',
               formKeyName: formKeysITspese,
+              valueType: 'percentage',
             ),
             InputRow(
               formKeyNumb: 3,
@@ -112,6 +115,7 @@ class _ITBodyCalcSpeseOldLayoutState extends State<ITBodyCalcSpeseOldLayout> {
               iconName: "017-time-is-money",
               initialText: "",
               formKeyName: formKeysITspese,
+              valueType: 'percentage-euro',
             ),
             InputRow(
               formKeyNumb: 4,
@@ -119,6 +123,7 @@ class _ITBodyCalcSpeseOldLayoutState extends State<ITBodyCalcSpeseOldLayout> {
               iconName: "017-time-is-money",
               initialText: '',
               formKeyName: formKeysITspese,
+              valueType: 'percentage',
             ),
             InputRow(
               formKeyNumb: 5,
@@ -126,6 +131,7 @@ class _ITBodyCalcSpeseOldLayoutState extends State<ITBodyCalcSpeseOldLayout> {
               iconName: "026-euro-2",
               initialText: '',
               formKeyName: formKeysITspese,
+              valueType: 'euro',
             ),
             InputRow(
               formKeyNumb: 6,
@@ -133,6 +139,7 @@ class _ITBodyCalcSpeseOldLayoutState extends State<ITBodyCalcSpeseOldLayout> {
               iconName: "015-interest-rate",
               initialText: initRegistro,
               formKeyName: formKeysITspese,
+              valueType: 'euro',
             ),
             InputRow(
               formKeyNumb: 7,
@@ -140,6 +147,7 @@ class _ITBodyCalcSpeseOldLayoutState extends State<ITBodyCalcSpeseOldLayout> {
               iconName: "026-euro-2",
               initialText: initCatastale,
               formKeyName: formKeysITspese,
+              valueType: 'euro',
             ),
             InputRow(
               formKeyNumb: 8,
@@ -147,6 +155,7 @@ class _ITBodyCalcSpeseOldLayoutState extends State<ITBodyCalcSpeseOldLayout> {
               iconName: "026-euro-2",
               initialText: initIpotecaria,
               formKeyName: formKeysITspese,
+              valueType: 'euro',
             ),
             InputRow(
               formKeyNumb: 9,
@@ -154,6 +163,7 @@ class _ITBodyCalcSpeseOldLayoutState extends State<ITBodyCalcSpeseOldLayout> {
               iconName: "015-interest-rate",
               initialText: initIVA,
               formKeyName: formKeysITspese,
+              valueType: 'euro',
             ),
             const Divider(
               height: 50,
