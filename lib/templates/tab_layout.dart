@@ -1,7 +1,31 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import "package:mutuo_mobile_app/globals.dart";
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+String customkey(key) {
+  String customKey;
+  if (key == "0" || key == "1") {
+    customKey = "";
+  } else {
+    customKey = key;
+  }
+
+  return customKey;
+}
+
+double customMaxHeight(dynamic key) {
+  double customHeight;
+  if (key == "0") {
+    customHeight = 20.0;
+  } else {
+    customHeight = 56.0;
+  }
+
+  return customHeight;
+}
 
 List<DataRow> readdata(tabella) {
   List<DataRow> rowList = [];
@@ -12,8 +36,13 @@ List<DataRow> readdata(tabella) {
     celle = [];
     for (int j = 0; j < tabella.length; j++) {
       // Loop 7 headers
-      celle.add(DataCell(Text(
-          tabella[tabella.keys.elementAt(j)].values.elementAt(i).toString())));
+      celle.add(DataCell(Center(
+        child: Text(
+          tabella[tabella.keys.elementAt(j)].values.elementAt(i).toString(),
+          textAlign: TextAlign.end,
+          // style: const TextStyle(color: Colors.green),
+        ),
+      )));
     }
     singleRow = DataRow(cells: celle);
     rowList.add(singleRow);
@@ -21,25 +50,30 @@ List<DataRow> readdata(tabella) {
   return rowList;
 }
 
-class Tablayout extends StatefulWidget {
-  final String apititle;
+class TabLayout extends StatefulWidget {
+  final String apicall;
 
-  const Tablayout({
+  const TabLayout({
+    required this.apicall,
     Key? key,
-    required this.apititle,
   }) : super(key: key);
 
   @override
-  State<Tablayout> createState() => _TablayoutState();
+  State<TabLayout> createState() => _TabLayoutState();
 }
 
-class _TablayoutState extends State<Tablayout> {
-  String apititle = apicall;
+class _TabLayoutState extends State<TabLayout> {
+  static final Map<String, String> httpHeaders = {
+    HttpHeaders.contentTypeHeader: "application/json",
+    "Connection": "Keep-Alive",
+    "Keep-Alive": "timeout=5, max=1000"
+  };
 
-  Future<Map> callApI(String apititle) async {
-    var url = "http://10.0.2.2:5000/$apititle";
-    final response =
-        await http.post(Uri.parse(url), body: json.encode(userEntry));
+  Future<Map> callApI(String apicall) async {
+    // var url = "http://10.0.2.2:5000/$apicall";
+    var url = "$baseurl/$apicall";
+    final response = await http.post(Uri.parse(url),
+        headers: httpHeaders, body: json.encode(userEntry));
     final decoded = json.decode(response.body) as Map<String, dynamic>;
     dataTable = decoded;
     return dataTable;
@@ -57,27 +91,42 @@ class _TablayoutState extends State<Tablayout> {
                 ),
                 child: SingleChildScrollView(
                   child: FutureBuilder<Map>(
-                    future: callApI(apititle),
+                    future: callApI(widget.apicall),
                     builder:
                         (BuildContext context, AsyncSnapshot<Map> snapshot) {
                       List<Widget> children;
                       if (snapshot.hasData) {
                         children = <Widget>[
                           DataTable(
+                            // decoration: BoxDecoration(
+                            //   borderRadius: BorderRadius.circular(
+                            //       20), // this only make bottom rounded and not top
+                            //   color: const Color(0xE61B1D1C),
+                            // ),
+                            // headingRowColor:
+                            //     MaterialStateProperty.all<Color>(Colors.blue),
                             columnSpacing: 20.0,
                             columns: dataTable.keys
                                 .map(
                                   (key) => DataColumn(
                                     label: ConstrainedBox(
                                       constraints: const BoxConstraints(
-                                          maxWidth: 150), //SET max width,
-                                      child: Text(key,
-                                          overflow: TextOverflow.ellipsis),
+                                        maxWidth: 130,
+                                        // maxHeight: customMaxHeight(key),
+                                      ),
+                                      //  SET max width,
+                                      child: Text(customkey(key),
+                                          textAlign: TextAlign.center,
+                                          softWrap: true,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.clip),
                                     ),
                                   ),
                                 )
                                 .toList(),
                             rows: readdata(dataTable),
+                            headingRowHeight:
+                                customMaxHeight(dataTable.keys.first),
                           ),
                         ];
                       } else if (snapshot.hasError) {

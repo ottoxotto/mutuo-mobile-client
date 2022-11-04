@@ -15,7 +15,7 @@ class _ITCalcRataPageState extends State<ITCalcRataPage> {
   Widget build(BuildContext context) {
     return const Scaffold(
         // backgroundColor: Styles.scaffoldBackgroundColor,
-        appBar: AppBarLayout(title: "Mutuo in Italia"),
+        appBar: AppBarLayout(title: "Calcola Rata in Italia"),
         body: ITBodyCalcRataLayout(),
         bottomNavigationBar: BotNavBarLayout());
   }

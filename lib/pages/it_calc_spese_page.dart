@@ -15,7 +15,7 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
   Widget build(BuildContext context) {
     return const Scaffold(
         // backgroundColor: Styles.scaffoldBackgroundColor,
-        appBar: AppBarLayout(title: "Mutuo in Italia"),
+        appBar: AppBarLayout(title: "Calcola Spese in Italia"),
         body: ITBodyCalcSpeseLayout(),
         bottomNavigationBar: BotNavBarLayout());
   }

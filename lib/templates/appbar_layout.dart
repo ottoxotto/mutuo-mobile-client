@@ -29,7 +29,7 @@ class _AppBarLayoutState extends State<AppBarLayout> {
           // icon: const Icon(Icons.home_rounded),
           icon: const ImageIcon(AssetImage("assets/icons/png/back-arrow.png"),
               // color: Colors.white,
-              size: 28)),
+              size: 20)),
       backgroundColor: Styles.bgColor,
       title: Text(
         widget.title,

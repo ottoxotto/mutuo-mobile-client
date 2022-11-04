@@ -31,8 +31,13 @@ class _BotNavBarLayoutState extends State<BotNavBarLayout> {
     if (_selectedIndex == 0) {
       Navigator.popUntil(context, ModalRoute.withName('/home'));
     } else if (_selectedIndex == 1) {
-      callApI("outMutuo");
-      Navigator.pushNamed(context, "/OVTable");
+      if (ModalRoute.of(context)?.settings.name == "/ITcalcRata") {
+        callApI("outMutuo");
+        Navigator.pushNamed(context, "/ITcalcRataTable");
+      } else if (ModalRoute.of(context)?.settings.name == "/ITcalcSpese") {
+        callApI("outSpese");
+        Navigator.pushNamed(context, "/ITcalcSpeseTable");
+      }
     }
   }
 
