@@ -103,6 +103,7 @@ class _TabLayoutState extends State<TabLayout> {
                             //       20), // this only make bottom rounded and not top
                             //   color: const Color(0xE61B1D1C),
                             // ),
+
                             // headingRowColor:
                             //     MaterialStateProperty.all<Color>(Colors.blue),
                             columnSpacing: 20.0,
@@ -119,6 +120,8 @@ class _TabLayoutState extends State<TabLayout> {
                                           textAlign: TextAlign.center,
                                           softWrap: true,
                                           maxLines: 2,
+                                          // style: const TextStyle(
+                                          //     fontWeight: FontWeight.bold),
                                           overflow: TextOverflow.clip),
                                     ),
                                   ),
