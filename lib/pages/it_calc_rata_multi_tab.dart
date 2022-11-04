@@ -1,20 +1,23 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import "package:mutuo_mobile_app/globals.dart";
 import 'package:mutuo_mobile_app/styles.dart';
-import 'package:mutuo_mobile_app/templates/tab_layout2.dart';
+import 'package:mutuo_mobile_app/templates/tab_layout.dart';
 
-class TabBarWindow2 extends StatefulWidget {
-  const TabBarWindow2({Key? key}) : super(key: key);
+import '../templates/appbar_layout.dart';
+
+class ITCalcRataMultiTabPage extends StatefulWidget {
+  const ITCalcRataMultiTabPage({Key? key}) : super(key: key);
 
   @override
-  State<TabBarWindow2> createState() => _TabBarWindow2State();
+  State<ITCalcRataMultiTabPage> createState() => _ITCalcRataMultiTabPageState();
 }
 
-class _TabBarWindow2State extends State<TabBarWindow2> {
+class _ITCalcRataMultiTabPageState extends State<ITCalcRataMultiTabPage> {
   int _selectedIndex = 0;
+  int index = 0;
+  String apicall = "outMutuo";
 
-  void _onItemTapped(int index) {
+  String _onItemTapped(index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -28,6 +31,7 @@ class _TabBarWindow2State extends State<TabBarWindow2> {
     } else if (_selectedIndex == 3) {
       apicall = "outMutuoOverview";
     }
+    return apicall;
   }
 
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
@@ -35,25 +39,7 @@ class _TabBarWindow2State extends State<TabBarWindow2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/home");
-          },
-          icon: const Icon(Icons.home_rounded),
-          color: Colors.white,
-        ),
-        backgroundColor: Styles.bgColor,
-        title: const Text(
-          "Piano di Ammortamento",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20.0,
-          ),
-        ),
-        centerTitle: true,
-        elevation: 0,
-      ),
+      appBar: const AppBarLayout(title: "Piano di Ammortamento"),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Styles.bgColor,
         buttonBackgroundColor: Colors.white,
@@ -83,7 +69,7 @@ class _TabBarWindow2State extends State<TabBarWindow2> {
         ],
         onTap: _onItemTapped,
       ),
-      body: Tablayout2(apicall),
+      body: TabLayout(apicall: apicall),
     );
   }
 }

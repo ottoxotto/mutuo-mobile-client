@@ -4,9 +4,11 @@ import 'package:mutuo_mobile_app/pages/it_calc_rata_page.dart';
 import 'package:mutuo_mobile_app/pages/it_calc_spese_page.dart';
 import 'package:mutuo_mobile_app/pages/it_select_page.dart';
 import 'package:mutuo_mobile_app/pages/germania_page.dart';
-import 'package:mutuo_mobile_app/pages/multi_tab_page2.dart';
+import 'package:mutuo_mobile_app/pages/it_calc_rata_multi_tab.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'pages/it_calc_spese_multi_tab.dart';
 
 // the net ninja tutorial playlist
 
@@ -37,7 +39,8 @@ class MyApp extends StatelessWidget {
         "/DE": (context) => const Germania(),
         "/ITcalcRata": (context) => const ITCalcRataPage(),
         "/ITcalcSpese": (context) => const ITCalcSpesePage(),
-        "/OVTable": (context) => const TabBarWindow2(),
+        "/ITcalcRataTable": (context) => const ITCalcRataMultiTabPage(),
+        "/ITcalcSpeseTable": (context) => const ITCalcSpeseMultiTabPage(),
       },
     );
   }
