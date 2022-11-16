@@ -44,9 +44,10 @@ class _BotNavBarNotchLayoutState extends State<BotNavBarNotchLayout> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(38.0),
-        topRight: Radius.circular(38.0),
+      // borderRadius: Styles.defaultBorderRadius,
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(Styles.defaultRadius),
+        topRight: Radius.circular(Styles.defaultRadius),
       ),
       child: BottomAppBar(
         //bottom navigation bar on scaffold

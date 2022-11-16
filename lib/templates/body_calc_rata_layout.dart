@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
-import 'package:mutuo_mobile_app/templates/inputrow_layout2.dart';
-import 'package:mutuo_mobile_app/templates/outputrow_layout.dart';
+import 'package:mutuo_mobile_app/templates/inputrow_layout.dart';
 import "package:mutuo_mobile_app/globals.dart";
+import 'package:mutuo_mobile_app/templates/outputrow_layout.dart';
 
 Function eq = const ListEquality().equals;
 
@@ -35,7 +35,7 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            InputRow2(
+            InputRow(
               formKeyNumb: 0,
               cellTitle: "Finanziamento",
               iconName: "euro1",
@@ -43,7 +43,7 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
               formKeyName: formKeysITrata,
               valueType: 'euro',
             ),
-            InputRow2(
+            InputRow(
               formKeyNumb: 1,
               cellTitle: "Tasso di Interesse",
               iconName: "percentage1",
@@ -51,7 +51,7 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
               formKeyName: formKeysITrata,
               valueType: 'percentage',
             ),
-            InputRow2(
+            InputRow(
               formKeyNumb: 2,
               cellTitle: "Anni per Calcolo Mutuo",
               iconName: "calculator1",
@@ -59,7 +59,7 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
               formKeyName: formKeysITrata,
               valueType: 'years',
             ),
-            InputRow2(
+            InputRow(
               formKeyNumb: 3,
               cellTitle: "Durata Anni Tasso Fisso",
               iconName: "hourglass2",
@@ -74,8 +74,9 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
             ),
             OutputRow(
               cellTitle: "Rata Mensile",
-              iconName: "018-wallet",
+              iconName: "wallet1",
               cellValue: widget.finalResponse,
+              valueType: 'euro',
             ),
             // ElevatedButton(
             //   onPressed: () async {

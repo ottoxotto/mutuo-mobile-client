@@ -74,72 +74,111 @@ class _InputRowState extends State<InputRow> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // here put container into Expanded to fill the scaffold vertically
       alignment: Alignment.center,
-      margin: EdgeInsets.all(Styles.defaultMarginHor / 3),
-      padding: EdgeInsets.all(Styles.defaultPaddingHor),
+      margin: EdgeInsets.fromLTRB(
+          Styles.defaultMarginHor,
+          Styles.defaultMarginVer / 2,
+          Styles.defaultMarginHor,
+          Styles.defaultMarginVer),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: Styles.defaultBorderRadius,
         color: Styles.secondaryColor,
       ),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: ImageIcon(
-              AssetImage("assets/icons/png/${widget.iconName}.png"),
-              color: Colors.white,
-              size: 28,
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+              borderRadius: Styles.defaultBorderRadius,
+              // side: const BorderSide(color: Styles.accentColor, width: 2),
+            )),
+            padding: MaterialStateProperty.all(
+                EdgeInsets.all(Styles.defaultPaddingHor)),
+            elevation: MaterialStateProperty.all(15),
+            backgroundColor: MaterialStateColor.resolveWith(
+                (states) => Styles.secondaryColor)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Flexible(
+              flex: 2,
+              child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      padding: EdgeInsets.all(Styles.defaultPaddingHor * 0.1),
+                      elevation: 50,
+                      primary: Styles.whiteColor,
+                      onPrimary: Styles.whiteColor,
+                      shadowColor: Styles.secondaryColor),
+                  child: Image(
+                    image:
+                        AssetImage("assets/icons/png/${widget.iconName}.png"),
+                    width: 50,
+                    height: 50,
+                    color: null,
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.center,
+                  )),
             ),
-          ),
-          Expanded(
-            flex: 4,
-            child: Text(
-              widget.cellTitle,
-              textAlign: TextAlign.left,
+            const Spacer(
+              flex: 1,
             ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Form(
-              key: formKeys[widget.formKeyNumb],
-              child: TextFormField(
-                inputFormatters: [_formatter(widget.valueType)],
-                keyboardType: TextInputType.number,
-                controller: userInput,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Campo Obbligatorio';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  userEntry[widget.cellTitle] = value;
-                },
-                decoration: InputDecoration(
-                  focusColor: Colors.red,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Colors.blue, width: 3.0),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  fillColor: Colors.grey,
-                  errorStyle: const TextStyle(
-                    color: Colors.red,
-                    fontSize: 12,
-                  ),
-                  hintStyle: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                  ),
+            Flexible(
+              flex: 4,
+              child: Text(
+                widget.cellTitle,
+                style: const TextStyle(
+                  fontSize: 15,
                 ),
               ),
             ),
-          )
-        ],
+            const Spacer(
+              flex: 1,
+            ),
+            Expanded(
+              flex: 4,
+              child: Form(
+                key: formKeys[widget.formKeyNumb],
+                child: TextFormField(
+                  inputFormatters: [_formatter(widget.valueType)],
+                  keyboardType: TextInputType.number,
+                  controller: userInput,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Campo Obbligatorio';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    userEntry[widget.cellTitle] = value;
+                  },
+                  decoration: InputDecoration(
+                    focusColor: Colors.red,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                          color: Styles.accentColor, width: 3.0),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    fillColor: Colors.grey,
+                    errorStyle: const TextStyle(
+                      color: Colors.red,
+                      fontSize: 12,
+                    ),
+                    hintStyle: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

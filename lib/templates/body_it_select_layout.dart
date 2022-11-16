@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mutuo_mobile_app/templates/button_layout2.dart';
+import 'package:mutuo_mobile_app/templates/button_layout.dart';
 
 class ITBodySelectLayout extends StatefulWidget {
   const ITBodySelectLayout({Key? key}) : super(key: key);
@@ -35,17 +35,17 @@ class _ITBodySelectLayoutState extends State<ITBodySelectLayout> {
           //     ),
           //   ),
           // ),
-          ButtonGeneric2(
+          ButtonGeneric(
             buttonlink: "ITcalcRata",
             buttonname: "Calcola Rata",
             buttonlogo: "house1",
           ),
-          ButtonGeneric2(
+          ButtonGeneric(
             buttonlink: "ITcalcSpese",
             buttonname: "Calcola Spese",
             buttonlogo: "payment1",
           ),
-          ButtonGeneric2(
+          ButtonGeneric(
             buttonlink: "ITgrafici",
             buttonname: "Grafici",
             buttonlogo: "bars1",

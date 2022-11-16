@@ -4,10 +4,10 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mutuo_mobile_app/templates/inputcombobox_layout.dart';
-import 'dart:convert';
 import 'package:mutuo_mobile_app/templates/inputrow_layout.dart';
-import 'package:mutuo_mobile_app/templates/outputrow_layout.dart';
+import 'dart:convert';
 import "package:mutuo_mobile_app/globals.dart";
+import 'package:mutuo_mobile_app/templates/outputrow_layout.dart';
 
 Function eq = const ListEquality().equals;
 
@@ -109,16 +109,19 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               cellTitle: "Anticipo Mutuo",
               iconName: "018-wallet",
               cellValue: finalResponse[0],
+              valueType: 'euro',
             ),
             OutputRow(
               cellTitle: "Spese Iniziali",
               iconName: "018-wallet",
               cellValue: finalResponse[1],
+              valueType: 'euro',
             ),
             OutputRow(
               cellTitle: "Tot. Uscite Iniziali",
               iconName: "018-wallet",
               cellValue: finalResponse[2],
+              valueType: 'euro',
             ),
             ElevatedButton(
               onPressed: () async {

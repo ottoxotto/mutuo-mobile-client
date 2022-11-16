@@ -13,14 +13,14 @@ Future callApI(apiName) async {
   dataTable = decoded;
 }
 
-class BotNavBarLayout extends StatefulWidget {
-  const BotNavBarLayout({Key? key}) : super(key: key);
+class BotNavBarLayoutOld extends StatefulWidget {
+  const BotNavBarLayoutOld({Key? key}) : super(key: key);
 
   @override
-  State<BotNavBarLayout> createState() => _BotNavBarLayoutState();
+  State<BotNavBarLayoutOld> createState() => _BotNavBarLayoutOldState();
 }
 
-class _BotNavBarLayoutState extends State<BotNavBarLayout> {
+class _BotNavBarLayoutOldState extends State<BotNavBarLayoutOld> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
