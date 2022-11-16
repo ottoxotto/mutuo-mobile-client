@@ -26,8 +26,8 @@ class _OutputRowState extends State<OutputRow> {
     return Container(
       // here put container into Expanded to fill the scaffold vertically
       alignment: Alignment.center,
-      margin: EdgeInsets.all(Styles.defaultPadding / 2),
-      padding: EdgeInsets.all(Styles.defaultPadding),
+      margin: EdgeInsets.all(Styles.defaultMarginHor / 2),
+      padding: EdgeInsets.all(Styles.defaultPaddingHor),
       decoration: BoxDecoration(
         border: Border.all(
           width: 3.0,

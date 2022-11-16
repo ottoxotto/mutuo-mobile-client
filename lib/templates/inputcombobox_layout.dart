@@ -29,8 +29,8 @@ class _InputComboboxState extends State<InputCombobox> {
     return Container(
       // here put container into Expanded to fill the scaffold vertically
       alignment: Alignment.center,
-      margin: EdgeInsets.all(Styles.defaultPadding / 3),
-      padding: EdgeInsets.all(Styles.defaultPadding),
+      margin: EdgeInsets.all(Styles.defaultMarginHor / 3),
+      padding: EdgeInsets.all(Styles.defaultPaddingHor),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
         color: Styles.secondaryColor,

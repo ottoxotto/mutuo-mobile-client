@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Styles {
-  static Color scaffoldBackgroundColor = Colors.white;
-  static Color appBarColor = Colors.white;
-  static Color boxColor = Colors.white;
-  static Color? defaultDarkGreyColor = Colors.grey[900];
-  static Color? defaultGreyColor = Colors.grey[600];
-  static Color? defaultLightGreyColor = Colors.grey[200];
-  static Color defaultYellowColor = const Color.fromARGB(181, 253, 216, 53);
+  static const whiteColor = Color.fromARGB(255, 255, 255, 255);
+  static const primaryColor = Color.fromARGB(255, 253, 151, 48); // FD9730
+  static const secondaryColor = Color.fromARGB(255, 42, 45, 62); // 2A2D3E
+  static const tertiaryColor = Color.fromARGB(255, 123, 237, 255); // 7BEDFF
+  static const bgColor = Color.fromARGB(255, 33, 35, 50); // 212332
+  static const accentColor = Color.fromARGB(255, 242, 112, 5); // F27005
 
-  static const primaryColor = Color(0xFF2697FF);
-  static const secondaryColor = Color(0xFF2A2D3E);
-  static const bgColor = Color(0xFF212332);
-
-  static double defaultPadding = 18.0;
+  static double defaultPaddingHor = 18.0;
+  static double defaultPaddingVer = 18.0;
+  static double defaultMarginHor = 18.0;
+  static double defaultMarginVer = 16.0;
   static IconData iconEuro = Icons.euro;
   static BorderRadius defaultBorderRadius = BorderRadius.circular(20);
 
@@ -22,7 +20,7 @@ class Styles {
 
   static ScrollbarThemeData scrollbarTheme =
       const ScrollbarThemeData().copyWith(
-    thumbColor: MaterialStateProperty.all(defaultYellowColor),
+    thumbColor: MaterialStateProperty.all(Styles.accentColor),
     // thumbVisibility: true,
     interactive: true,
   );

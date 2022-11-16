@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/templates/appbar_layout.dart';
-import 'package:mutuo_mobile_app/templates/botnavbar_layout.dart';
 import 'package:mutuo_mobile_app/templates/body_calc_spese_layout.dart';
+import 'package:mutuo_mobile_app/templates/botnavbarnotch_layout.dart';
 
 class ITCalcSpesePage extends StatefulWidget {
   const ITCalcSpesePage({Key? key}) : super(key: key);
@@ -17,6 +17,6 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
         // backgroundColor: Styles.scaffoldBackgroundColor,
         appBar: AppBarLayout(title: "Calcola Spese in Italia"),
         body: ITBodyCalcSpeseLayout(),
-        bottomNavigationBar: BotNavBarLayout());
+        bottomNavigationBar: BotNavBarNotchLayout());
   }
 }

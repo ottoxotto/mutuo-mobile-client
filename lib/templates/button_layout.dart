@@ -14,10 +14,10 @@ class ButtonGeneric extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.all(Styles.defaultPadding / 2),
-      padding: EdgeInsets.all(Styles.defaultPadding),
+      margin: EdgeInsets.all(Styles.defaultMarginHor / 2),
+      padding: EdgeInsets.all(Styles.defaultPaddingHor),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: Styles.defaultBorderRadius,
         color: Styles.secondaryColor,
       ),
       child: ElevatedButton(

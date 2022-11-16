@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 Map userEntry = {};
 Map dataTable = {};
-// String apicall = "outMutuo";
+// String finalResponse = "";
 String baseurl = "https://mutuo-mobile-server.vercel.app";
 List<GlobalKey<FormState>> formKeysITrata = [
   GlobalKey<FormState>(),

@@ -5,6 +5,7 @@ import 'package:mutuo_mobile_app/pages/it_calc_spese_page.dart';
 import 'package:mutuo_mobile_app/pages/it_select_page.dart';
 import 'package:mutuo_mobile_app/pages/germania_page.dart';
 import 'package:mutuo_mobile_app/pages/it_calc_rata_multi_tab.dart';
+import 'package:mutuo_mobile_app/pages/linechart_page.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,8 +29,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Admin Panel',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Styles.bgColor,
-        textTheme: GoogleFonts.notoSansTextTheme(Theme.of(context).textTheme)
-            .apply(bodyColor: Colors.white),
+        textTheme:
+            GoogleFonts.spaceGroteskTextTheme(Theme.of(context).textTheme)
+                .apply(bodyColor: Colors.white),
         canvasColor: Styles.secondaryColor,
       ),
       initialRoute: "/home",
@@ -37,10 +39,12 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const Home(),
         "/IT": (context) => const Italia(),
         "/DE": (context) => const Germania(),
+        // "/ITcalcRata": (context) => const ITCalcRataPage(),
         "/ITcalcRata": (context) => const ITCalcRataPage(),
         "/ITcalcSpese": (context) => const ITCalcSpesePage(),
         "/ITcalcRataTable": (context) => const ITCalcRataMultiTabPage(),
         "/ITcalcSpeseTable": (context) => const ITCalcSpeseMultiTabPage(),
+        "/ITgrafici": (context) => const LineChartPage(),
       },
     );
   }

@@ -43,51 +43,29 @@ class _BotNavBarLayoutState extends State<BotNavBarLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.transparent,
-        backgroundBlendMode: BlendMode.clear,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(38),
-          topRight: Radius.circular(38),
+    return BottomNavigationBar(
+      backgroundColor: Styles.bgColor,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          label: "",
+          icon: Icon(
+            Icons.home,
+            color: Colors.white,
+          ),
+          tooltip: 'Home',
         ),
-        boxShadow: [
-          BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
-        ],
-      ),
-      // height: MediaQuery.of(context).size.height * 0.085,
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(38.0),
-          topRight: Radius.circular(38.0),
+        BottomNavigationBarItem(
+          label: "",
+          icon: Icon(
+            Icons.table_view,
+            color: Colors.white,
+          ),
+          tooltip: 'Piano di Ammortamento',
         ),
-        child: BottomNavigationBar(
-          showUnselectedLabels: false,
-          showSelectedLabels: false,
-          backgroundColor: Styles.whiteColor,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              label: "",
-              icon: Icon(
-                Icons.home,
-                color: Styles.bgColor,
-              ),
-              tooltip: 'Home',
-            ),
-            BottomNavigationBarItem(
-              label: "",
-              icon: Icon(
-                Icons.table_view,
-                color: Styles.bgColor,
-              ),
-              tooltip: 'Piano di Ammortamento',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[800],
-          onTap: _onItemTapped,
-        ),
-      ),
+      ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.amber[800],
+      onTap: _onItemTapped,
     );
   }
 }
