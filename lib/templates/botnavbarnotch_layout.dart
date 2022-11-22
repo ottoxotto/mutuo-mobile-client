@@ -46,12 +46,13 @@ class _BotNavBarNotchLayoutState extends State<BotNavBarNotchLayout> {
     return ClipRRect(
       // borderRadius: Styles.defaultBorderRadius,
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(Styles.defaultRadius),
-        topRight: Radius.circular(Styles.defaultRadius),
+        topLeft: Radius.circular(Styles.defaultRadius * 0.1),
+        topRight: Radius.circular(Styles.defaultRadius * 0.1),
       ),
       child: BottomAppBar(
         //bottom navigation bar on scaffold
-        color: Styles.whiteColor,
+        color: Styles.secondaryColor,
+        // elevation: 50,
         shape: const CircularNotchedRectangle(), //shape of notch
         notchMargin:
             5, //notche margin between floating button and bottom appbar
@@ -62,14 +63,14 @@ class _BotNavBarNotchLayoutState extends State<BotNavBarNotchLayout> {
           children: <Widget>[
             IconButton(
               icon: const ImageIcon(AssetImage("assets/icons/png/home.png"),
-                  color: Styles.bgColor, size: 26),
+                  color: Styles.whiteColor, size: 26),
               onPressed: () {
                 _onItemTapped(0);
               },
             ),
             IconButton(
               icon: const ImageIcon(AssetImage("assets/icons/png/graph.png"),
-                  color: Styles.bgColor, size: 26),
+                  color: Styles.whiteColor, size: 26),
               onPressed: () {
                 _onItemTapped(1);
               },

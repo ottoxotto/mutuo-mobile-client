@@ -52,7 +52,7 @@ class _BotNavBarLayoutState extends State<BotNavBarLayout> {
           topRight: Radius.circular(38),
         ),
         boxShadow: [
-          BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+          BoxShadow(color: Styles.bgColor, spreadRadius: 0, blurRadius: 10),
         ],
       ),
       // height: MediaQuery.of(context).size.height * 0.085,

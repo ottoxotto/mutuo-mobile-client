@@ -66,9 +66,22 @@ class _ITCalcRataPageState extends State<ITCalcRataPage> {
               backgroundColor: Styles.accentColor,
               foregroundColor: Styles.whiteColor,
               splashColor: Colors.white,
-              tooltip: "Calcola",
               child: const ImageIcon(AssetImage("assets/icons/png/math.png"),
                   color: Colors.white, size: 36),
+              // child: Column(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: const [
+              //     ImageIcon(AssetImage("assets/icons/png/math.png"),
+              //         color: Colors.white, size: 26),
+              //     Text(
+              //       "Calcola",
+              //       style: TextStyle(
+              //         fontSize: 10,
+              //         fontWeight: FontWeight.w500,
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ), //icon inside button
           ),
         ),

@@ -45,7 +45,7 @@ class _OutputRowState extends State<OutputRow> {
           Styles.defaultMarginVer),
       decoration: BoxDecoration(
         borderRadius: Styles.defaultBorderRadius,
-        color: Styles.accentColor,
+        color: Styles.secondaryColor,
       ),
       child: ElevatedButton(
         onPressed: () {},
@@ -88,7 +88,7 @@ class _OutputRowState extends State<OutputRow> {
               flex: 1,
             ),
             Flexible(
-              flex: 2,
+              flex: 3,
               child: Text(
                 widget.cellTitle,
                 style: const TextStyle(
