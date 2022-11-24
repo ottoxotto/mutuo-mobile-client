@@ -41,30 +41,44 @@ class _ITCalcRataMultiTabPageState extends State<ITCalcRataMultiTabPage> {
     return Scaffold(
       appBar: const AppBarLayout(title: "Piano di Ammortamento"),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Styles.bgColor,
-        buttonBackgroundColor: Colors.white,
+        height: 50,
+        color: Styles.whiteColor,
+        backgroundColor: Styles.secondaryColor,
+        buttonBackgroundColor: Styles.whiteColor,
         // buttonBackgroundColor: Styles.scaffoldBackgroundColor,
         key: _bottomNavigationKey,
         items: const <Widget>[
-          Icon(
-            Icons.looks_one_outlined,
-            color: Styles.bgColor,
-            size: 30,
+          Image(
+            image: AssetImage("assets/icons/png/num1.png"),
+            width: 35,
+            height: 35,
+            // color: Styles.bgColor,
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.center,
           ),
-          Icon(
-            Icons.looks_two_outlined,
-            color: Styles.bgColor,
-            size: 30,
+          Image(
+            image: AssetImage("assets/icons/png/num2.png"),
+            width: 35,
+            height: 35,
+            // color: Styles.bgColor,
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.center,
           ),
-          Icon(
-            Icons.looks_3_outlined,
-            color: Styles.bgColor,
-            size: 30,
+          Image(
+            image: AssetImage("assets/icons/png/num3.png"),
+            width: 35,
+            height: 35,
+            // color: Styles.bgColor,
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.center,
           ),
-          Icon(
-            Icons.looks_4_outlined,
-            color: Styles.bgColor,
-            size: 30,
+          Image(
+            image: AssetImage("assets/icons/png/num4.png"),
+            width: 35,
+            height: 35,
+            // color: Styles.bgColor,
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.center,
           ),
         ],
         onTap: _onItemTapped,

@@ -100,12 +100,12 @@ class _OutputRowState extends State<OutputRow> {
               flex: 1,
             ),
             Expanded(
-              flex: 3,
+              flex: 4,
               child: Text(
                 _formatOutput(widget.cellValue),
                 textAlign: TextAlign.left,
                 style: const TextStyle(
-                  fontSize: 17.0,
+                  fontSize: 16.0,
                 ),
               ),
             )

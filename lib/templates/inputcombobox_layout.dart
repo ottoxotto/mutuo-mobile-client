@@ -27,52 +27,68 @@ class _InputComboboxState extends State<InputCombobox> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // here put container into Expanded to fill the scaffold vertically
       alignment: Alignment.center,
-      margin: EdgeInsets.all(Styles.defaultMarginHor / 3),
-      padding: EdgeInsets.all(Styles.defaultPaddingHor),
+      margin: EdgeInsets.fromLTRB(
+          Styles.defaultMarginHor,
+          Styles.defaultMarginVer / 2,
+          Styles.defaultMarginHor,
+          Styles.defaultMarginVer),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: Styles.defaultBorderRadius,
         color: Styles.secondaryColor,
       ),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            // flex: 2,
-            child: Form(
-              child: DropdownButtonFormField(
-                items: widget.dropDownEntries
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: const TextStyle(fontSize: 16),
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+              borderRadius: Styles.defaultBorderRadius,
+              // side: const BorderSide(color: Styles.accentColor, width: 2),
+            )),
+            padding: MaterialStateProperty.all(
+                EdgeInsets.all(Styles.defaultPaddingHor)),
+            elevation: MaterialStateProperty.all(15),
+            backgroundColor: MaterialStateColor.resolveWith(
+                (states) => Styles.secondaryColor)),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              // flex: 2,
+              child: Form(
+                child: DropdownButtonFormField(
+                  items: widget.dropDownEntries
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                    );
+                  }).toList(),
+                  value: dropdownValue,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                      userEntry[widget.cellTitle] = dropdownValue;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
-                  );
-                }).toList(),
-                value: dropdownValue,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownValue = newValue!;
-                    userEntry[widget.cellTitle] = dropdownValue;
-                  });
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                          color: Styles.accentColor, width: 3.0),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    fillColor: Colors.grey,
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Colors.blue, width: 3.0),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  fillColor: Colors.grey,
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

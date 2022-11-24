@@ -63,25 +63,48 @@ class _ITCalcRataPageState extends State<ITCalcRataPage> {
                 }
                 formBool.clear();
               },
-              backgroundColor: Styles.accentColor,
-              foregroundColor: Styles.whiteColor,
+              backgroundColor: Styles.secondaryColor,
               splashColor: Colors.white,
-              child: const ImageIcon(AssetImage("assets/icons/png/math.png"),
-                  color: Colors.white, size: 36),
-              // child: Column(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: const [
-              //     ImageIcon(AssetImage("assets/icons/png/math.png"),
-              //         color: Colors.white, size: 26),
-              //     Text(
-              //       "Calcola",
-              //       style: TextStyle(
-              //         fontSize: 10,
-              //         fontWeight: FontWeight.w500,
-              //       ),
-              //     ),
-              //   ],
-              // ),
+              child: ElevatedButton(
+                onPressed: () async {
+                  formBool = [];
+                  for (int i = 0; i < formKeysITrata.length; i++) {
+                    formKeysITrata[i].currentState!.validate();
+                    formBool.add(formKeysITrata[i].currentState!.validate());
+                  }
+
+                  if (eq(formBool, [true, true, true, true])) {
+                    var url = "$baseurl/outMutuo";
+
+                    final response = await http.post(Uri.parse(url),
+                        headers: httpHeaders, body: json.encode(userEntry));
+                    final decoded =
+                        json.decode(response.body) as Map<String, dynamic>;
+                    dataTable = decoded;
+                    setState(() {
+                      finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
+                      ITBodyCalcRataLayout(finalResponse: finalResponse);
+                    });
+                  }
+                  formBool.clear();
+                },
+                style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(50, 50),
+                    shape: const CircleBorder(),
+                    padding: EdgeInsets.all(Styles.defaultPaddingHor * 0.1),
+                    elevation: 50,
+                    primary: Styles.accentColor,
+                    onPrimary: Styles.whiteColor,
+                    shadowColor: Styles.bgColor),
+                child: const Image(
+                  image: AssetImage("assets/icons/png/math.png"),
+                  width: 33,
+                  height: 33,
+                  color: Styles.whiteColor,
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.center,
+                ), // <-- Text
+              ),
             ), //icon inside button
           ),
         ),

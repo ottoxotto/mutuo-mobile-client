@@ -5,6 +5,8 @@ import "package:mutuo_mobile_app/globals.dart";
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:mutuo_mobile_app/styles.dart';
+
 String customkey(key) {
   String customKey;
   if (key == "0" || key == "1") {
@@ -82,6 +84,7 @@ class _TabLayoutState extends State<TabLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Styles.secondaryColor,
       body: LayoutBuilder(
         builder: ((context, constraints) => SingleChildScrollView(
               scrollDirection: Axis.horizontal,
