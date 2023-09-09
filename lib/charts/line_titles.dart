@@ -1,94 +1,105 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+import '../templates/body_it_select_graph_layout.dart';
+// import 'package:mutuo_mobile_app/pages/linechart_page.dart';
+// import 'package:mutuo_mobile_app/globals.dart';
+
 class LineTitles {
-  static getTitleData() => FlTitlesData(
+  final DataLabel dataLabel;
+  LineTitles(this.dataLabel);
+
+  FlTitlesData getTitleData() => FlTitlesData(
         show: true,
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
             reservedSize: 35,
-            getTitlesWidget: bottomTitleWidgets,
+            interval: (dataLabel.xaxislabel.length + 1) / 5,
+            getTitlesWidget: (value, meta) =>
+                bottomTitleWidgets(value, meta, dataLabel),
+
+            // getTitlesWidget: bottomTitleWidgets(dataLabel),
           ),
         ),
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
+            // reservedSize: dataLabel.yaxislabel.length.toDouble(),
             reservedSize: 35,
-            getTitlesWidget: leftTitleWidgets,
+            // interval: 3,
+            getTitlesWidget: (value, meta) =>
+                leftTitleWidgets(value, meta, dataLabel),
+          ),
+        ),
+        rightTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        topTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: false,
           ),
         ),
       );
 }
 
-Widget bottomTitleWidgets(double value, TitleMeta meta) {
-  const style = TextStyle(
-    color: Color(0xff72719b),
-    fontWeight: FontWeight.bold,
-    fontSize: 16,
-  );
+Widget bottomTitleWidgets(double value, TitleMeta meta, DataLabel dataLabel) {
   Widget text;
-  switch (value.toInt()) {
-    case 2:
-      text = const Text('SEPT', style: style);
-      break;
-    case 7:
-      text = const Text('OCT', style: style);
-      break;
-    case 12:
-      text = const Text('DEC', style: style);
-      break;
-    default:
-      text = const Text('');
-      break;
+  if (dataLabel.xaxislabel.isEmpty || value == meta.max) {
+    final remainder = value % meta.appliedInterval;
+    if (remainder != 0.0 && remainder / meta.appliedInterval < 0.5) {
+      text = const SizedBox.shrink();
+    }
+    text = const Text('');
+  } else {
+    text = Text(dataLabel.xaxislabel[value.toInt() - 1],
+        style: const TextStyle(
+          // color: Color(0xff75729e),
+          fontWeight: FontWeight.bold,
+          fontSize: 12,
+        ),
+        textAlign: TextAlign.left);
   }
   return SideTitleWidget(
-    axisSide: meta.axisSide,
+    // axisSide: meta.axisSide,
+    axisSide: AxisSide.bottom,
     space: 10,
     child: text,
   );
 }
 
-SideTitles get bottomTitles => SideTitles(
+// SideTitles get bottomTitles => SideTitles(
+SideTitles bottomTitles(dataLabel) => SideTitles(
       showTitles: true,
-      reservedSize: 32,
-      interval: 1,
-      getTitlesWidget: bottomTitleWidgets,
+      getTitlesWidget: (value, meta) =>
+          bottomTitleWidgets(value, meta, dataLabel),
     );
 
-Widget leftTitleWidgets(double value, TitleMeta meta) {
-  const style = TextStyle(
-    color: Color(0xff75729e),
-    fontWeight: FontWeight.bold,
-    fontSize: 14,
-  );
+Widget leftTitleWidgets(double value, TitleMeta meta, DataLabel dataLabel) {
   String text;
-  switch (value.toInt()) {
-    case 1:
-      text = '1m';
-      break;
-    case 2:
-      text = '2m';
-      break;
-    case 3:
-      text = '3m';
-      break;
-    case 4:
-      text = '5m';
-      break;
-    case 5:
-      text = '6m';
-      break;
-    default:
-      return Container();
+  if (dataLabel.yaxislabel.isEmpty) {
+    return Container();
+  } else {
+    // if (value >=
+    //     double.parse(dataLabel.yaxislabel[dataLabel.yaxislabel.length - 1])) {
+    //   int dummy = 1;
+    //   // value = dataLabel.yaxislabel.length - 1;
+    // }
+    text = value.toString();
+    // text = dataLabel.yaxislabel[value.toInt()];
   }
 
-  return Text(text, style: style, textAlign: TextAlign.center);
+  return Text(text,
+      style: const TextStyle(
+        // color: Color(0xff75729e),
+        fontWeight: FontWeight.bold,
+        fontSize: 12,
+      ),
+      textAlign: TextAlign.left);
 }
 
-SideTitles leftTitles() => SideTitles(
-      getTitlesWidget: leftTitleWidgets,
+SideTitles leftTitles(dataLabel) => SideTitles(
+      getTitlesWidget: (value, meta) =>
+          leftTitleWidgets(value, meta, dataLabel),
       showTitles: true,
-      interval: 1,
-      reservedSize: 40,
     );

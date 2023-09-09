@@ -36,15 +36,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   flag: ^6.0.0
   http: ^0.13.5
-  google_fonts: ^3.0.1
-  flutter_launcher_icons: ^0.10.0
+  google_fonts: ^4.0.3
+  flutter_launcher_icons: ^0.11.0
   curved_navigation_bar: ^1.0.3
   collection: ^1.16.0
   currency_text_input_formatter: ^2.1.8
   number_text_input_formatter: ^1.0.0+1
-  fl_chart: ^0.55.2
+  fl_chart: ^0.61.0
   clay_containers: ^0.3.2
-  intl: ^0.17.0
+  intl: ^0.18.0
   
 
 dev_dependencies:
@@ -61,7 +61,8 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/icons/png/app_logo512.png"
+  # image_path: "assets/icons/png/app_logo512.png"
+  image_path: assets/icons/png/AppLogo/android/play_store_512.png
   min_sdk_android: 21 # android min sdk min:16, default 21
     
 # For information on the generic Dart part of this file, see the

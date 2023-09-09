@@ -1,23 +1,47 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/charts/line_titles.dart';
+// import 'package:mutuo_mobile_app/pages/linechart_page.dart';
 
-class LineChartLayout extends StatelessWidget {
+import '../globals.dart';
+import '../templates/body_it_select_graph_layout.dart';
+
+// import '../globals.dart';
+
+class LineChartLayout extends StatefulWidget {
+  final DataLabel dataLabel;
+  final List<FlSpot>? plotData;
+  const LineChartLayout({Key? key, this.plotData, required this.dataLabel})
+      : super(key: key);
+
+  @override
+  State<LineChartLayout> createState() => _LineChartLayoutState();
+}
+
+class _LineChartLayoutState extends State<LineChartLayout> {
   final List<Color> gradientColors = [
     const Color(0xff23b6e6),
     const Color.fromARGB(255, 144, 214, 196),
   ];
 
-  LineChartLayout({Key? key}) : super(key: key);
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      globplotData = widget.plotData;
+      globdataLabel = widget.dataLabel;
+      if (kDebugMode) {
+        print(globplotData);
+        print(globdataLabel);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) => LineChart(
         LineChartData(
-          minX: 0,
-          maxX: 11,
-          minY: 0,
-          maxY: 6,
-          titlesData: LineTitles.getTitleData(),
+          titlesData: LineTitles(widget.dataLabel).getTitleData(),
           gridData: FlGridData(
             show: true,
             getDrawingHorizontalLine: (value) {
@@ -40,15 +64,8 @@ class LineChartLayout extends StatelessWidget {
           ),
           lineBarsData: [
             LineChartBarData(
-              spots: [
-                const FlSpot(0, 3),
-                const FlSpot(2.6, 2),
-                const FlSpot(4.9, 5),
-                const FlSpot(6.8, 2.5),
-                const FlSpot(8, 4),
-                const FlSpot(9.5, 3),
-                const FlSpot(11, 4),
-              ],
+              spots: widget.plotData,
+              show: true,
               isCurved: true,
               color: gradientColors[0],
               barWidth: 5,

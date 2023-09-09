@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/templates/appbar_layout.dart';
 import 'package:mutuo_mobile_app/templates/body_it_select_layout.dart';
 
-class Italia extends StatefulWidget {
-  const Italia({Key? key}) : super(key: key);
+class ITSelectPage extends StatefulWidget {
+  const ITSelectPage({Key? key}) : super(key: key);
 
   @override
-  State<Italia> createState() => _ItaliaState();
+  State<ITSelectPage> createState() => _ITSelectPageState();
 }
 
-class _ItaliaState extends State<Italia> {
+class _ITSelectPageState extends State<ITSelectPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

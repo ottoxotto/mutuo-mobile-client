@@ -17,11 +17,13 @@ class InputCombobox extends StatefulWidget {
 
 class _InputComboboxState extends State<InputCombobox> {
   TextEditingController userInput = TextEditingController();
+  String selectedValue = " ";
 
   @override
   void initState() {
     super.initState();
-    userEntry[widget.cellTitle] = dropdownValue;
+    userEntry[widget.cellTitle] = widget.dropDownEntries[0];
+    selectedValue = widget.dropDownEntries[0];
   }
 
   @override
@@ -57,20 +59,20 @@ class _InputComboboxState extends State<InputCombobox> {
               child: Form(
                 child: DropdownButtonFormField(
                   items: widget.dropDownEntries
-                      .map<DropdownMenuItem<String>>((String value) {
+                      .map<DropdownMenuItem<String>>((String selectedValue) {
                     return DropdownMenuItem<String>(
-                      value: value,
+                      value: selectedValue,
                       child: Text(
-                        value,
+                        selectedValue,
                         style: const TextStyle(fontSize: 14),
                       ),
                     );
                   }).toList(),
-                  value: dropdownValue,
+                  value: selectedValue,
                   onChanged: (String? newValue) {
                     setState(() {
-                      dropdownValue = newValue!;
-                      userEntry[widget.cellTitle] = dropdownValue;
+                      selectedValue = newValue!;
+                      userEntry[widget.cellTitle] = selectedValue;
                     });
                   },
                   decoration: InputDecoration(

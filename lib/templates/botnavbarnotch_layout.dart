@@ -31,12 +31,23 @@ class _BotNavBarNotchLayoutState extends State<BotNavBarNotchLayout> {
     if (_selectedIndex == 0) {
       Navigator.popUntil(context, ModalRoute.withName('/home'));
     } else if (_selectedIndex == 1) {
-      if (ModalRoute.of(context)?.settings.name == "/ITcalcRata") {
+      if (ModalRoute.of(context)?.settings.name == "/ITcalcRataAnniCalc") {
+        callApI("outMutuo");
+        Navigator.pushNamed(context, "/ITcalcRataTable");
+      } else if (ModalRoute.of(context)?.settings.name ==
+          "/ITcalcRataRataFissa") {
+        callApI("outMutuo");
+        Navigator.pushNamed(context, "/ITcalcRataTable");
+      } else if (ModalRoute.of(context)?.settings.name ==
+          "/ITcalcRataRimborsoCap") {
         callApI("outMutuo");
         Navigator.pushNamed(context, "/ITcalcRataTable");
       } else if (ModalRoute.of(context)?.settings.name == "/ITcalcSpese") {
         callApI("outSpese");
         Navigator.pushNamed(context, "/ITcalcSpeseTable");
+      } else if (ModalRoute.of(context)?.settings.name == "/DEcalcSpese") {
+        callApI("outSpeseDE");
+        Navigator.pushNamed(context, "/DEcalcSpeseTable");
       }
     }
   }

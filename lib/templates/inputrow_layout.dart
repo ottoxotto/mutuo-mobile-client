@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import "package:mutuo_mobile_app/globals.dart";
 import 'package:number_text_input_formatter/number_text_input_formatter.dart';
@@ -10,6 +13,9 @@ class InputRow extends StatefulWidget {
   final String initialText;
   final String valueType;
   final List<GlobalKey<FormState>> formKeyName;
+  final bool disableFlag;
+
+  // final ValueNotifier<String> aValueNotifier; // Add this line
 
   const InputRow({
     Key? key,
@@ -19,6 +25,8 @@ class InputRow extends StatefulWidget {
     required this.initialText,
     required this.formKeyName,
     required this.valueType,
+    required this.disableFlag,
+    // required this.aValueNotifier, // Add this line
   }) : super(key: key);
 
   @override
@@ -52,17 +60,45 @@ class _InputRowState extends State<InputRow> {
     }
   }
 
+  // Preprocess the value based on the formatter for the input type
+  String preprocessValue(String value, String valueType) {
+    if (value.isNotEmpty) {
+      switch (valueType) {
+        case "euro":
+          value = NumberFormat.simpleCurrency(locale: "eu")
+              .format(double.parse(value));
+          return value;
+        case "percentage":
+          value = NumberFormat.decimalPercentPattern(decimalDigits: 2)
+              .format(double.parse(value));
+          return value;
+        // Add more cases for other value types as needed
+        default:
+          return value; // No preprocessing needed for other value types
+      }
+    } else {
+      return value;
+    }
+  }
+
   TextEditingController userInput = TextEditingController();
   late List<GlobalKey<FormState>> formKeys;
+  late TextInputFormatter _inputFormatter;
 
   @override
   void initState() {
     super.initState();
-
     userInput = TextEditingController(
-      text: widget.initialText,
+      text: preprocessValue(widget.initialText, widget.valueType),
     );
     formKeys = widget.formKeyName;
+    // Initialize the formatter
+    _inputFormatter = _formatter(widget.valueType); // Update the formatter
+    if (kDebugMode) {
+      print("InitState InputRow: text = $userInput");
+      print("InitState InputRow _inputFormatter: $_inputFormatter");
+    }
+    userEntry[widget.cellTitle] = userInput.text;
   }
 
   @override
@@ -72,7 +108,34 @@ class _InputRowState extends State<InputRow> {
   }
 
   @override
+  void didUpdateWidget(InputRow oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    // Check if the initialText prop has changed
+    if (widget.initialText != oldWidget.initialText) {
+      // Preprocess the value based on the formatter before setting it
+      String preprocessedValue =
+          preprocessValue(widget.initialText, widget.valueType);
+      userInput.text = preprocessedValue;
+    }
+    // Update the formatter when the valueType changes
+    if (widget.valueType != oldWidget.valueType) {
+      setState(() {
+        _inputFormatter = _formatter(widget.valueType);
+      });
+    }
+    if (kDebugMode) {
+      print("didUpdateWidget InputRow: text = $userInput");
+      print("didUpdateWidget InputRow _inputFormatter: $_inputFormatter");
+    }
+    userEntry[widget.cellTitle] = userInput.text;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (kDebugMode) {
+      print("Build InputRow: text = $userInput");
+    }
     return Container(
       alignment: Alignment.center,
       margin: EdgeInsets.fromLTRB(
@@ -109,8 +172,8 @@ class _InputRowState extends State<InputRow> {
                       shape: const CircleBorder(),
                       padding: EdgeInsets.all(Styles.defaultPaddingHor * 0.1),
                       elevation: 50,
-                      primary: Styles.whiteColor,
-                      onPrimary: Styles.whiteColor,
+                      backgroundColor: Styles.whiteColor,
+                      foregroundColor: Styles.whiteColor,
                       shadowColor: Styles.secondaryColor),
                   child: Image(
                     image:
@@ -142,7 +205,11 @@ class _InputRowState extends State<InputRow> {
               child: Form(
                 key: formKeys[widget.formKeyNumb],
                 child: TextFormField(
-                  inputFormatters: [_formatter(widget.valueType)],
+                  readOnly: widget.disableFlag,
+                  // inputFormatters: [_formatter(widget.valueType)],
+                  inputFormatters: [
+                    _inputFormatter
+                  ], // Use the stored formatter
                   keyboardType: TextInputType.number,
                   controller: userInput,
                   validator: (value) {

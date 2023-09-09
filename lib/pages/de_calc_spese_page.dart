@@ -1,28 +1,32 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:mutuo_mobile_app/templates/appbar_layout.dart';
-import 'package:mutuo_mobile_app/templates/body_calc_rata_layout.dart';
+import 'package:mutuo_mobile_app/templates/body_de_calc_spese_layout.dart';
 import 'package:mutuo_mobile_app/templates/botnavbarnotch_layout.dart';
 
 Function eq = const ListEquality().equals;
 
-class ITCalcRataPage extends StatefulWidget {
-  const ITCalcRataPage({Key? key}) : super(key: key);
+class DECalcSpesePage extends StatefulWidget {
+  const DECalcSpesePage({Key? key}) : super(key: key);
 
   @override
-  State<ITCalcRataPage> createState() => _ITCalcRataPageState();
+  State<DECalcSpesePage> createState() => _DECalcSpesePageState();
 }
 
-class _ITCalcRataPageState extends State<ITCalcRataPage> {
+class _DECalcSpesePageState extends State<DECalcSpesePage> {
   List<bool> formBool = [];
-  String finalResponse =
-      ""; //the problem is how to update the OutputRow widget when finalResponse updates
+  List<String> finalResponse = [
+    "",
+    "",
+    ""
+  ]; //the problem is how to update the OutputRow widget when finalResponse updates
 
   static final Map<String, String> httpHeaders = {
     HttpHeaders.contentTypeHeader: "application/json",
@@ -32,10 +36,13 @@ class _ITCalcRataPageState extends State<ITCalcRataPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (kDebugMode) {
+      print("Build: finalResponse = $finalResponse");
+    }
     return Scaffold(
         // backgroundColor: Styles.scaffoldBackgroundColor,
-        appBar: const AppBarLayout(title: "Calcola Rata in Italia"),
-        body: ITBodyCalcRataLayout(finalResponse: finalResponse),
+        appBar: const AppBarLayout(title: "Calcola Spese in Germania"),
+        body: DEBodyCalcSpeseLayout(finalResponse: finalResponse),
         floatingActionButton: SizedBox(
           height: 80.0,
           width: 80.0,
@@ -43,13 +50,12 @@ class _ITCalcRataPageState extends State<ITCalcRataPage> {
             child: FloatingActionButton(
               onPressed: () async {
                 formBool = [];
-                for (int i = 0; i < formKeysITrata.length; i++) {
-                  formKeysITrata[i].currentState!.validate();
-                  formBool.add(formKeysITrata[i].currentState!.validate());
+                for (int i = 0; i < formKeysDEspese.length; i++) {
+                  formKeysDEspese[i].currentState!.validate();
+                  formBool.add(formKeysDEspese[i].currentState!.validate());
                 }
-
-                if (eq(formBool, [true, true, true, true])) {
-                  var url = "$baseurl/outMutuo";
+                if (eq(formBool, [true, true, true, true, true])) {
+                  var url = "$baseurl/outSpeseDE";
 
                   final response = await http.post(Uri.parse(url),
                       headers: httpHeaders, body: json.encode(userEntry));
@@ -57,8 +63,9 @@ class _ITCalcRataPageState extends State<ITCalcRataPage> {
                       json.decode(response.body) as Map<String, dynamic>;
                   dataTable = decoded;
                   setState(() {
-                    finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
-                    ITBodyCalcRataLayout(finalResponse: finalResponse);
+                    finalResponse[0] =
+                        decoded["TotCosti"]["0"].toStringAsFixed(0);
+                    DEBodyCalcSpeseLayout(finalResponse: finalResponse);
                   });
                 }
                 formBool.clear();
@@ -68,13 +75,12 @@ class _ITCalcRataPageState extends State<ITCalcRataPage> {
               child: ElevatedButton(
                 onPressed: () async {
                   formBool = [];
-                  for (int i = 0; i < formKeysITrata.length; i++) {
-                    formKeysITrata[i].currentState!.validate();
-                    formBool.add(formKeysITrata[i].currentState!.validate());
+                  for (int i = 0; i < formKeysDEspese.length; i++) {
+                    formKeysDEspese[i].currentState!.validate();
+                    formBool.add(formKeysDEspese[i].currentState!.validate());
                   }
-
-                  if (eq(formBool, [true, true, true, true])) {
-                    var url = "$baseurl/outMutuo";
+                  if (eq(formBool, [true, true, true, true, true])) {
+                    var url = "$baseurl/outSpeseDE";
 
                     final response = await http.post(Uri.parse(url),
                         headers: httpHeaders, body: json.encode(userEntry));
@@ -82,19 +88,20 @@ class _ITCalcRataPageState extends State<ITCalcRataPage> {
                         json.decode(response.body) as Map<String, dynamic>;
                     dataTable = decoded;
                     setState(() {
-                      finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
-                      ITBodyCalcRataLayout(finalResponse: finalResponse);
+                      finalResponse[0] =
+                          decoded["TotCosti"]["0"].toStringAsFixed(0);
+                      DEBodyCalcSpeseLayout(finalResponse: finalResponse);
                     });
                   }
                   formBool.clear();
                 },
                 style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(50, 50),
+                    fixedSize: const Size(51, 51),
                     shape: const CircleBorder(),
                     padding: EdgeInsets.all(Styles.defaultPaddingHor * 0.1),
                     elevation: 50,
-                    primary: Styles.accentColor,
-                    onPrimary: Styles.whiteColor,
+                    backgroundColor: Styles.accentColor,
+                    foregroundColor: Styles.whiteColor,
                     shadowColor: Styles.bgColor),
                 child: const Image(
                   image: AssetImage("assets/icons/png/math.png"),
@@ -103,9 +110,9 @@ class _ITCalcRataPageState extends State<ITCalcRataPage> {
                   color: Styles.whiteColor,
                   fit: BoxFit.scaleDown,
                   alignment: Alignment.center,
-                ), // <-- Text
+                ),
               ),
-            ), //icon inside button
+            ),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

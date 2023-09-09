@@ -104,8 +104,8 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
                     shape: const CircleBorder(),
                     padding: EdgeInsets.all(Styles.defaultPaddingHor * 0.1),
                     elevation: 50,
-                    primary: Styles.accentColor,
-                    onPrimary: Styles.whiteColor,
+                    backgroundColor: Styles.accentColor,
+                    foregroundColor: Styles.whiteColor,
                     shadowColor: Styles.bgColor),
                 child: const Image(
                   image: AssetImage("assets/icons/png/math.png"),

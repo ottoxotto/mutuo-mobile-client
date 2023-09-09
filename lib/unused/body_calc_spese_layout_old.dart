@@ -59,6 +59,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               initialText: '',
               formKeyName: formKeysITspese,
               valueType: 'euro',
+              disableFlag: false,
             ),
             InputRow(
               formKeyNumb: 1,
@@ -67,6 +68,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               initialText: '',
               formKeyName: formKeysITspese,
               valueType: 'percentage',
+              disableFlag: false,
             ),
             InputRow(
               formKeyNumb: 2,
@@ -75,6 +77,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               initialText: '',
               formKeyName: formKeysITspese,
               valueType: 'percentage',
+              disableFlag: false,
             ),
             InputRow(
               formKeyNumb: 3,
@@ -83,6 +86,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               initialText: "",
               formKeyName: formKeysITspese,
               valueType: 'percentage-euro',
+              disableFlag: false,
             ),
             InputRow(
               formKeyNumb: 4,
@@ -91,6 +95,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               initialText: '',
               formKeyName: formKeysITspese,
               valueType: 'euro',
+              disableFlag: false,
             ),
             InputRow(
               formKeyNumb: 5,
@@ -99,6 +104,7 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               initialText: '',
               formKeyName: formKeysITspese,
               valueType: 'euro',
+              disableFlag: false,
             ),
             const Divider(
               height: 50,

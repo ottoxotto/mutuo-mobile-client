@@ -6,17 +6,19 @@ import 'package:mutuo_mobile_app/templates/outputrow_layout.dart';
 
 Function eq = const ListEquality().equals;
 
-class ITBodyCalcRataLayout extends StatefulWidget {
+class DEBodyCalcRataRataFissaLayout extends StatefulWidget {
   final String finalResponse;
 
-  const ITBodyCalcRataLayout({Key? key, required this.finalResponse})
+  const DEBodyCalcRataRataFissaLayout({Key? key, required this.finalResponse})
       : super(key: key);
 
   @override
-  State<ITBodyCalcRataLayout> createState() => _ITBodyCalcRataLayoutState();
+  State<DEBodyCalcRataRataFissaLayout> createState() =>
+      _DEBodyCalcRataRataFissaLayoutState();
 }
 
-class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
+class _DEBodyCalcRataRataFissaLayoutState
+    extends State<DEBodyCalcRataRataFissaLayout> {
   String entry = "";
   final _formkey = GlobalKey<FormState>();
   List<bool> formBool = [];
@@ -40,32 +42,36 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
               cellTitle: "Finanziamento",
               iconName: "euro1",
               initialText: '',
-              formKeyName: formKeysITrata,
+              formKeyName: formKeysDErata,
               valueType: 'euro',
+              disableFlag: false,
             ),
             InputRow(
               formKeyNumb: 1,
               cellTitle: "Tasso di Interesse",
               iconName: "percentage1",
               initialText: '',
-              formKeyName: formKeysITrata,
+              formKeyName: formKeysDErata,
               valueType: 'percentage',
+              disableFlag: false,
             ),
             InputRow(
               formKeyNumb: 2,
-              cellTitle: "Anni per Calcolo Mutuo",
+              cellTitle: "Rata",
               iconName: "calculator1",
               initialText: '',
-              formKeyName: formKeysITrata,
-              valueType: 'years',
+              formKeyName: formKeysDErata,
+              valueType: 'euro',
+              disableFlag: false,
             ),
             InputRow(
               formKeyNumb: 3,
               cellTitle: "Durata Anni Tasso Fisso",
               iconName: "hourglass2",
               initialText: '',
-              formKeyName: formKeysITrata,
+              formKeyName: formKeysDErata,
               valueType: 'years',
+              disableFlag: false,
             ),
             const Divider(
               height: 50,
@@ -81,9 +87,9 @@ class _ITBodyCalcRataLayoutState extends State<ITBodyCalcRataLayout> {
             // ElevatedButton(
             //   onPressed: () async {
             //     formBool = [];
-            //     for (int i = 0; i < formKeysITrata.length; i++) {
-            //       formKeysITrata[i].currentState!.validate();
-            //       formBool.add(formKeysITrata[i].currentState!.validate());
+            //     for (int i = 0; i < formKeysDErata.length; i++) {
+            //       formKeysDErata[i].currentState!.validate();
+            //       formBool.add(formKeysDErata[i].currentState!.validate());
             //     }
 
             //     if (eq(formBool, [true, true, true, true])) {

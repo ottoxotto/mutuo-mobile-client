@@ -24,15 +24,44 @@ class _OutputRowState extends State<OutputRow> {
   Map userEntry = {};
   String outputString = "";
 
-  String _formatOutput(String value) {
+  String _formatOutput(String value, String valueType) {
     if (value.isEmpty) {
       outputString = "";
-    } else {
+    } else if (valueType == "euro") {
       outputString = NumberFormat.simpleCurrency(locale: "eu")
           .format(double.parse(widget.cellValue));
+    } else if (valueType == "percentage") {
+      outputString =
+          NumberFormat.percentPattern().format(double.parse(widget.cellValue));
     }
     return outputString;
   }
+
+  // dynamic _formatter(valueType) {
+  //   switch (valueType) {
+  //     case "euro":
+  //       CurrencyTextInputFormatter userInputformat = CurrencyTextInputFormatter(
+  //           allowNegative: false, suffix: "€", insertDecimalPoint: false);
+  //       return userInputformat;
+  //     case "percentage":
+  //       PercentageTextInputFormatter userInputformat =
+  //           PercentageTextInputFormatter(suffix: "%", decimalDigits: 2);
+  //       return userInputformat;
+  //     case "years":
+  //       NumberTextInputFormatter userInputformat = NumberTextInputFormatter(
+  //         decimalDigits: 0,
+  //       );
+  //       return userInputformat;
+  //     case "percentage-euro":
+  //       NumberTextInputFormatter userInputformat = NumberTextInputFormatter(
+  //         decimalDigits: 2,
+  //       );
+  //       return userInputformat;
+  //     default:
+  //       NumberTextInputFormatter userInputformat = NumberTextInputFormatter();
+  //       return userInputformat;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +100,8 @@ class _OutputRowState extends State<OutputRow> {
                       shape: const CircleBorder(),
                       padding: EdgeInsets.all(Styles.defaultPaddingHor * 0.1),
                       elevation: 50,
-                      primary: Styles.whiteColor,
-                      onPrimary: Styles.whiteColor,
+                      backgroundColor: Styles.whiteColor,
+                      foregroundColor: Styles.whiteColor,
                       shadowColor: Styles.secondaryColor),
                   child: Image(
                     image:
@@ -102,7 +131,7 @@ class _OutputRowState extends State<OutputRow> {
             Expanded(
               flex: 4,
               child: Text(
-                _formatOutput(widget.cellValue),
+                _formatOutput(widget.cellValue, widget.valueType),
                 textAlign: TextAlign.left,
                 style: const TextStyle(
                   fontSize: 16.0,
