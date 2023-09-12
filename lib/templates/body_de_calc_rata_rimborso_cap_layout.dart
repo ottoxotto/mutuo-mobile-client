@@ -22,6 +22,7 @@ class _DEBodyCalcRataRimborsoCapLayoutState
   String entry = "";
   final _formkey = GlobalKey<FormState>();
   List<bool> formBool = [];
+  String selectedChoice = "Option 1";
 
   // static final Map<String, String> httpHeaders = {
   //   HttpHeaders.contentTypeHeader: "application/json",
@@ -68,6 +69,24 @@ class _DEBodyCalcRataRimborsoCapLayoutState
               formKeyNumb: 3,
               cellTitle: "Durata Anni Tasso Fisso",
               iconName: "hourglass2",
+              initialText: '',
+              formKeyName: formKeysDErata,
+              valueType: 'years',
+              disableFlag: false,
+            ),
+            InputRow(
+              formKeyNumb: 4,
+              cellTitle: "Maxi-Rata Annuale",
+              iconName: "sack1",
+              initialText: '',
+              formKeyName: formKeysDErata,
+              valueType: 'euro',
+              disableFlag: false,
+            ),
+            InputRow(
+              formKeyNumb: 5,
+              cellTitle: "N° Mensilitá prima della Maxi-Rata",
+              iconName: "payment1",
               initialText: '',
               formKeyName: formKeysDErata,
               valueType: 'years',

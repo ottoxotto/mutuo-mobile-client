@@ -48,6 +48,18 @@ class _BotNavBarNotchLayoutState extends State<BotNavBarNotchLayout> {
       } else if (ModalRoute.of(context)?.settings.name == "/DEcalcSpese") {
         callApI("outSpeseDE");
         Navigator.pushNamed(context, "/DEcalcSpeseTable");
+      } else if (ModalRoute.of(context)?.settings.name ==
+          "/DEcalcRataAnniCalc") {
+        callApI("outMutuo");
+        Navigator.pushNamed(context, "/DEcalcRataTable");
+      } else if (ModalRoute.of(context)?.settings.name ==
+          "/DEcalcRataRataFissa") {
+        callApI("outMutuo");
+        Navigator.pushNamed(context, "/DEcalcRataTable");
+      } else if (ModalRoute.of(context)?.settings.name ==
+          "/DEcalcRataRimborsoCap") {
+        callApI("outMutuoDE");
+        Navigator.pushNamed(context, "/DEcalcRataTable");
       }
     }
   }

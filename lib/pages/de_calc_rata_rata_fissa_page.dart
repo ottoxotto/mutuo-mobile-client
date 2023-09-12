@@ -49,7 +49,7 @@ class DECalcRataRataFissaPageState extends State<DECalcRataRataFissaPage> {
                   formBool.add(formKeysDErata[i].currentState!.validate());
                 }
 
-                if (eq(formBool, [true, true, true, true])) {
+                if (eq(formBool, [true, true, true, true, true, true])) {
                   var url = "$baseurl/outMutuoDE";
 
                   final response = await http.post(Uri.parse(url),
@@ -74,7 +74,7 @@ class DECalcRataRataFissaPageState extends State<DECalcRataRataFissaPage> {
                     formBool.add(formKeysDErata[i].currentState!.validate());
                   }
 
-                  if (eq(formBool, [true, true, true, true])) {
+                  if (eq(formBool, [true, true, true, true, true, true])) {
                     var url = "$baseurl/outMutuoDE";
 
                     final response = await http.post(Uri.parse(url),
