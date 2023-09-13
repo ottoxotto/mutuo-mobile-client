@@ -13,10 +13,10 @@ class _ITBodyCalcRataSelectLayoutState
     extends State<ITBodyCalcRataSelectLayout> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: const <Widget>[
+        children: <Widget>[
           ButtonGeneric(
             buttonlink: "ITcalcRataAnniCalc",
             buttonname: "Calcola su X Anni",

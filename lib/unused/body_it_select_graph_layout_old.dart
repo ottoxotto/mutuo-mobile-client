@@ -12,10 +12,10 @@ class ITBodySelectGraphLayout extends StatefulWidget {
 class _ITBodySelectGraphLayoutState extends State<ITBodySelectGraphLayout> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: const <Widget>[
+        children: <Widget>[
           ButtonApiLayout(
             buttonlink: "ITgrafici",
             buttonname: "House Price Index",

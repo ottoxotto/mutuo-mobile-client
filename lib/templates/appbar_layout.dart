@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 
-class AppBarLayout extends StatefulWidget with PreferredSizeWidget {
+class AppBarLayout extends StatefulWidget implements PreferredSizeWidget {
   final String title;
 
   const AppBarLayout({

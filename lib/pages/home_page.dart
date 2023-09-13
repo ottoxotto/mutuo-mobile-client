@@ -17,8 +17,8 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            children: const <Widget>[
+          const Row(
+            children: <Widget>[
               Expanded(
                 child: Text(
                   "Dove stai comprando?",

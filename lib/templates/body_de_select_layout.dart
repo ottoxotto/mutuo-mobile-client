@@ -11,10 +11,10 @@ class DEBodySelectLayout extends StatefulWidget {
 class _DEBodySelectLayoutState extends State<DEBodySelectLayout> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: const <Widget>[
+        children: <Widget>[
           ButtonGeneric(
             buttonlink: "DEcalcRata",
             buttonname: "Calcola Rata",
