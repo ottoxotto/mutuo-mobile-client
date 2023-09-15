@@ -161,10 +161,10 @@ class _InputRowState extends State<InputRow> {
             backgroundColor: MaterialStateColor.resolveWith(
                 (states) => Styles.secondaryColor)),
         child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          // mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            Expanded(
+            Flexible(
               flex: 2,
               child: ElevatedButton(
                   onPressed: () {},
@@ -190,13 +190,10 @@ class _InputRowState extends State<InputRow> {
             ),
             Flexible(
               flex: 4,
-              child: SizedBox(
-                width: 110,
-                child: Text(
-                  widget.cellTitle,
-                  style: const TextStyle(
-                    fontSize: 15,
-                  ),
+              child: Text(
+                widget.cellTitle,
+                style: const TextStyle(
+                  fontSize: 15,
                 ),
               ),
             ),
