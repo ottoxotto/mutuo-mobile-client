@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:mutuo_mobile_app/templates/inputrow_layout.dart';
 import "package:mutuo_mobile_app/globals.dart";
-import 'package:mutuo_mobile_app/templates/outputrow_layout.dart';
 
 Function eq = const ListEquality().equals;
 
@@ -91,46 +90,16 @@ class _DEBodyCalcRataRataFissaLayoutState
               valueType: 'years',
               disableFlag: false,
             ),
-            const Divider(
-              height: 50,
-              thickness: 5,
-              color: Colors.white,
-            ),
-            OutputRow(
-              cellTitle: "Rata Mensile",
-              iconName: "wallet1",
-              cellValue: widget.finalResponse,
-              valueType: 'euro',
-            ),
-            // ElevatedButton(
-            //   onPressed: () async {
-            //     formBool = [];
-            //     for (int i = 0; i < formKeysDErata.length; i++) {
-            //       formKeysDErata[i].currentState!.validate();
-            //       formBool.add(formKeysDErata[i].currentState!.validate());
-            //     }
-
-            //     if (eq(formBool, [true, true, true, true])) {
-            //       var url = "$baseurl/outMutuo";
-
-            //       final response = await http.post(Uri.parse(url),
-            //           headers: httpHeaders, body: json.encode(userEntry));
-            //       final decoded =
-            //           json.decode(response.body) as Map<String, dynamic>;
-            //       dataTable = decoded;
-            //       setState(() {
-            //         widget.finalResponse =
-            //             decoded["Rata €"]["1"].toStringAsFixed(2);
-            //       });
-            //     }
-            //     formBool.clear();
-            //   },
-            //   style: ButtonStyle(
-            //     elevation: MaterialStateProperty.all(15),
-            //   ),
-            //   child: const Text(
-            //     "Calcola",
-            //   ),
+            // const Divider(
+            //   height: 50,
+            //   thickness: 5,
+            //   color: Colors.white,
+            // ),
+            // OutputRow(
+            //   cellTitle: "Rata Mensile",
+            //   iconName: "wallet1",
+            //   cellValue: widget.finalResponse,
+            //   valueType: 'euro',
             // ),
           ],
         ),

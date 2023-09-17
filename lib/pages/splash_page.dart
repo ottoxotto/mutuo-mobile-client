@@ -14,20 +14,21 @@ class SplashScreen extends StatelessWidget {
         // splash: Lottie.asset('assets/loading-circles.json'),
         splash: 
           const Column(
-            children: [
-              Image(
-                image:
-                  AssetImage("assets/icons/png/AppLogowhite.png"),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image(
+                    image:
+                      AssetImage("assets/icons/png/AppLogoback.png"),
+                  ),
+                  // Image.asset("assets/math.png"),
+                  // Text('InvestImmo', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Styles.whiteColor),)
+                ],
               ),
-              // Image.asset("assets/math.png"),
-              Text('InvestImmo', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),)
-            ],
-          ),
-        backgroundColor: Styles.primaryColor,
+        backgroundColor: Styles.secondaryColor,
         nextScreen: const Home(),
-      splashIconSize: 500,
-      duration: 4000,
-      splashTransition: SplashTransition.fadeTransition,
+      splashIconSize: 512,
+      duration: 3000,
+      splashTransition: SplashTransition.sizeTransition,
       pageTransitionType: PageTransitionType.leftToRightWithFade,
       animationDuration: const Duration(seconds: 1),
     );

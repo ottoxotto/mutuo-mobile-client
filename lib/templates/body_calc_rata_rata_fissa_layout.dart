@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:mutuo_mobile_app/templates/inputrow_layout.dart';
 import "package:mutuo_mobile_app/globals.dart";
-import 'package:mutuo_mobile_app/templates/outputrow_layout.dart';
 
 Function eq = const ListEquality().equals;
 
@@ -73,17 +72,17 @@ class _ITBodyCalcRataRataFissaLayoutState
               valueType: 'years',
               disableFlag: false,
             ),
-            const Divider(
-              height: 50,
-              thickness: 5,
-              color: Colors.white,
-            ),
-            OutputRow(
-              cellTitle: "Rata Mensile",
-              iconName: "wallet1",
-              cellValue: widget.finalResponse,
-              valueType: 'euro',
-            ),
+            // const Divider(
+            //   height: 50,
+            //   thickness: 5,
+            //   color: Colors.white,
+            // ),
+            // OutputRow(
+            //   cellTitle: "Rata Mensile",
+            //   iconName: "wallet1",
+            //   cellValue: widget.finalResponse,
+            //   valueType: 'euro',
+            // ),
             // ElevatedButton(
             //   onPressed: () async {
             //     formBool = [];
