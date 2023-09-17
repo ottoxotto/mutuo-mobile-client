@@ -92,7 +92,7 @@ class _BotNavBarNotchLayoutState extends State<BotNavBarNotchLayout> {
               },
             ),
             IconButton(
-              icon: const ImageIcon(AssetImage("assets/icons/png/graph.png"),
+              icon: const ImageIcon(AssetImage("assets/icons/png/next.png"),
                   color: Styles.whiteColor, size: 26),
               onPressed: () {
                 _onItemTapped(1);

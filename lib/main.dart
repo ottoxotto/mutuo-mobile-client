@@ -17,6 +17,7 @@ import 'package:mutuo_mobile_app/pages/it_calc_spese_page.dart';
 import 'package:mutuo_mobile_app/pages/it_select_graph_page.dart';
 import 'package:mutuo_mobile_app/pages/it_select_page.dart';
 import 'package:mutuo_mobile_app/pages/it_calc_rata_multi_tab.dart';
+import 'package:mutuo_mobile_app/pages/splash_page.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -45,8 +46,9 @@ class MyApp extends StatelessWidget {
                 .apply(bodyColor: Colors.white),
         canvasColor: Styles.secondaryColor,
       ),
-      initialRoute: "/home",
+      initialRoute: "/splash",
       routes: {
+        "/splash": (context) => const SplashScreen(),
         "/home": (context) => const Home(),
         "/IT": (context) => const ITSelectPage(),
         "/DE": (context) => const DESelectPage(),
