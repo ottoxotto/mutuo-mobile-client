@@ -8,6 +8,7 @@ class Styles {
   static const bgColor = Color.fromARGB(255, 33, 35, 50); // 212332
   static const accentColor = Color.fromARGB(255, 242, 112, 5); // F27005
   static const goldColor = Color.fromARGB(255, 255, 220, 0); // #FFDC00
+  static const disabled = Color.fromARGB(0, 32, 39, 46); // 00DDC1
 
   static double defaultPaddingHor = 18.0;
   static double defaultPaddingVer = 18.0;

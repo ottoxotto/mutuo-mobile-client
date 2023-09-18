@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:mutuo_mobile_app/templates/appbar_layout.dart';
-import 'package:mutuo_mobile_app/templates/botnavbarnotch_layout.dart';
+import 'package:mutuo_mobile_app/templates/botnavbarnotch_animated_layout.dart';
 
 import '../templates/body_calc_rata_rata_fissa_layout.dart';
 
@@ -23,8 +23,8 @@ class ITCalcRataRataFissaPage extends StatefulWidget {
 
 class ITCalcRataRataFissaPageState extends State<ITCalcRataRataFissaPage> {
   List<bool> formBool = [];
-  String finalResponse =
-      ""; //the problem is how to update the OutputRow widget when finalResponse updates
+  String finalResponse = "";
+  bool blink = false;
 
   static final Map<String, String> httpHeaders = {
     HttpHeaders.contentTypeHeader: "application/json",
@@ -61,6 +61,8 @@ class ITCalcRataRataFissaPageState extends State<ITCalcRataRataFissaPage> {
                   setState(() {
                     finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
                     ITBodyCalcRataRataFissaLayout(finalResponse: finalResponse);
+                    blink = true;
+                    BotNavBarNotchAnimatedLayout(flagBlink: blink);
                   });
                 }
                 formBool.clear();
@@ -87,6 +89,7 @@ class ITCalcRataRataFissaPageState extends State<ITCalcRataRataFissaPage> {
                       finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
                       ITBodyCalcRataRataFissaLayout(
                           finalResponse: finalResponse);
+                      blink = true;
                     });
                   }
                   formBool.clear();
@@ -113,6 +116,6 @@ class ITCalcRataRataFissaPageState extends State<ITCalcRataRataFissaPage> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         resizeToAvoidBottomInset: false,
-        bottomNavigationBar: const BotNavBarNotchLayout());
+        bottomNavigationBar: BotNavBarNotchAnimatedLayout(flagBlink: blink));
   }
 }

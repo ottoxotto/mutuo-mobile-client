@@ -30,6 +30,7 @@ class _BotNavBarNotchAnimatedLayoutState
   // bool _isAnimating = false;
   // bool _isTapped = false;
   AdvancedIconState _state = AdvancedIconState.primary;
+  double _iconopacity = 0.3;
 
   @override
   void initState() {
@@ -37,10 +38,12 @@ class _BotNavBarNotchAnimatedLayoutState
     if (widget.flagBlink) {
       setState(() {
         _state = AdvancedIconState.secondary;
+        _iconopacity = 1;
       });
     } else {
       setState(() {
         _state = AdvancedIconState.primary;
+        _iconopacity = 0.3;
       });
     }
   }
@@ -54,6 +57,7 @@ class _BotNavBarNotchAnimatedLayoutState
         _state = widget.flagBlink
             ? AdvancedIconState.secondary
             : AdvancedIconState.primary;
+        _iconopacity = 1;
       });
     }
   }
@@ -148,14 +152,13 @@ class _BotNavBarNotchAnimatedLayoutState
             IconButton(
               icon: AdvancedIcon(
                 icon: Icons
-                    .double_arrow_rounded, //change this icon as per your requirement.
+                    .keyboard_double_arrow_right_rounded, //change this icon as per your requirement.
                 secondaryIcon: Icons
-                    .double_arrow_rounded, //change this icon as per your requirement.
-                color: Colors
-                    .grey, //color of primary icon, change it as per your requirement
-                secondaryColor: Colors
-                    .white, //color of secondary icon, change it as per your requirement
+                    .keyboard_double_arrow_right_rounded, //change this icon as per your requirement.
+                color: Styles.whiteColor, //color of primary icon, change it as per your requirement
+                secondaryColor: Styles.whiteColor, //color of secondary icon, change it as per your requirement
                 state: _state,
+                opacity: _iconopacity,
                 effect: AdvancedIconEffect
                     .bubbleFade, //change effect as per your requirement.
                 duration: const Duration(milliseconds: 900),
