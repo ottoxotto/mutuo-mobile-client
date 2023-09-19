@@ -8,7 +8,7 @@ import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:mutuo_mobile_app/templates/appbar_layout.dart';
 import 'package:mutuo_mobile_app/templates/body_calc_spese_layout.dart';
-import 'package:mutuo_mobile_app/templates/botnavbarnotch_layout.dart';
+import 'package:mutuo_mobile_app/templates/botnavbarnotch_animated_layout.dart';
 
 Function eq = const ListEquality().equals;
 
@@ -26,6 +26,7 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
     "",
     ""
   ]; //the problem is how to update the OutputRow widget when finalResponse updates
+  bool blink = false;
 
   static final Map<String, String> httpHeaders = {
     HttpHeaders.contentTypeHeader: "application/json",
@@ -66,6 +67,8 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
                     finalResponse[2] =
                         decoded["SpesaTotIniziale"]["0"].toStringAsFixed(0);
                     ITBodyCalcSpeseLayout(finalResponse: finalResponse);
+                    blink = true;
+                    BotNavBarNotchAnimatedLayout(flagBlink: blink);
                   });
                 }
                 formBool.clear();
@@ -95,6 +98,7 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
                       finalResponse[2] =
                           decoded["SpesaTotIniziale"]["0"].toStringAsFixed(0);
                       ITBodyCalcSpeseLayout(finalResponse: finalResponse);
+                      blink = true;
                     });
                   }
                   formBool.clear();
@@ -121,7 +125,7 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         resizeToAvoidBottomInset: false,
-        bottomNavigationBar: const BotNavBarNotchLayout());
+        bottomNavigationBar: BotNavBarNotchAnimatedLayout(flagBlink: blink));
   }
 }
 

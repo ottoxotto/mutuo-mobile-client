@@ -82,7 +82,9 @@ class _BotNavBarNotchAnimatedLayoutState
     // }
 
     if (_selectedIndex == 0) {
-      Navigator.popUntil(context, ModalRoute.withName('/home'));
+      // Navigator.of(context).popUntil((route) { print(route.settings.name); return false; });
+      // Navigator.popUntil(context, ModalRoute.withName('/home'));
+      Navigator.pushNamed(context, "/home");
     } else if (_selectedIndex == 1) {
       if (ModalRoute.of(context)?.settings.name == "/ITcalcRataAnniCalc") {
         callApI("outMutuo");

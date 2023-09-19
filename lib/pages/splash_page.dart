@@ -27,10 +27,10 @@ class SplashScreen extends StatelessWidget {
         backgroundColor: Styles.secondaryColor,
         nextScreen: const Home(),
       splashIconSize: 512,
-      duration: 3000,
+      duration: 2000,
       splashTransition: SplashTransition.sizeTransition,
-      pageTransitionType: PageTransitionType.leftToRightWithFade,
-      animationDuration: const Duration(seconds: 1),
+      pageTransitionType: PageTransitionType.fade,
+      animationDuration: const Duration(milliseconds: 600),
     );
   }
 }

@@ -9,7 +9,7 @@ import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:mutuo_mobile_app/templates/appbar_layout.dart';
 import 'package:mutuo_mobile_app/templates/body_de_calc_spese_layout.dart';
-import 'package:mutuo_mobile_app/templates/botnavbarnotch_layout.dart';
+import 'package:mutuo_mobile_app/templates/botnavbarnotch_animated_layout.dart';
 
 Function eq = const ListEquality().equals;
 
@@ -27,6 +27,8 @@ class _DECalcSpesePageState extends State<DECalcSpesePage> {
     "",
     ""
   ]; //the problem is how to update the OutputRow widget when finalResponse updates
+  bool blink = false;
+
 
   static final Map<String, String> httpHeaders = {
     HttpHeaders.contentTypeHeader: "application/json",
@@ -66,6 +68,8 @@ class _DECalcSpesePageState extends State<DECalcSpesePage> {
                     finalResponse[0] =
                         decoded["TotCosti"]["0"].toStringAsFixed(0);
                     DEBodyCalcSpeseLayout(finalResponse: finalResponse);
+                    blink = true;
+                    BotNavBarNotchAnimatedLayout(flagBlink: blink);
                   });
                 }
                 formBool.clear();
@@ -91,6 +95,7 @@ class _DECalcSpesePageState extends State<DECalcSpesePage> {
                       finalResponse[0] =
                           decoded["TotCosti"]["0"].toStringAsFixed(0);
                       DEBodyCalcSpeseLayout(finalResponse: finalResponse);
+                      blink = true;
                     });
                   }
                   formBool.clear();
@@ -117,6 +122,6 @@ class _DECalcSpesePageState extends State<DECalcSpesePage> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         resizeToAvoidBottomInset: false,
-        bottomNavigationBar: const BotNavBarNotchLayout());
+        bottomNavigationBar: BotNavBarNotchAnimatedLayout(flagBlink: blink));
   }
 }
