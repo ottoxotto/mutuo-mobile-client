@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:mutuo_mobile_app/styles.dart';
+import 'package:sticky_headers/sticky_headers.dart';
 
 String customkey(key) {
   String customKey;
@@ -86,29 +87,64 @@ class _TabStickyHeaderLayoutState extends State<TabStickyHeaderLayout> {
     return Scaffold(
       backgroundColor: Styles.secondaryColor,
       body: LayoutBuilder(
-        builder: ((context, constraints) => SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: constraints.maxHeight,
-                ),
-                child: SingleChildScrollView(
-                  child: FutureBuilder<Map>(
-                    future: callApI(widget.apicall),
-                    builder:
-                        (BuildContext context, AsyncSnapshot<Map> snapshot) {
-                      List<Widget> children;
-                      if (snapshot.hasData) {
-                        children = <Widget>[
-                          DataTable(
-                            // decoration: BoxDecoration(
-                            //   borderRadius: BorderRadius.circular(
-                            //       20), // this only make bottom rounded and not top
-                            //   color: const Color(0xE61B1D1C),
-                            // ),
-
-                            // headingRowColor:
-                            //     MaterialStateProperty.all<Color>(Colors.blue),
+        builder: (context, constraints) => SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight,
+            ),
+            child: SingleChildScrollView(
+              child: FutureBuilder<Map>(
+                future: callApI(widget.apicall),
+                builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
+                  if (snapshot.hasData) {
+                    // Extract the table data
+                    Map dataTable = snapshot.data!;
+                    List<Widget> children = [
+                      // Wrap DataTable with StickyHeader
+                      StickyHeader(
+                        header: DataTable(
+                          columnSpacing: 20.0,
+                          columns: dataTable.keys
+                              .map(
+                                (key) => DataColumn(
+                                  label: ConstrainedBox(
+                                    constraints: const BoxConstraints(
+                                      maxWidth: 130,
+                                    ),
+                                    child: Text(
+                                      customkey(key),
+                                      textAlign: TextAlign.center,
+                                      softWrap: true,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.clip,
+                                    ),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                          rows: [
+                            DataRow(
+                              cells: dataTable.keys
+                                  .map(
+                                    (key) => DataCell(
+                                      Center(
+                                        child: Text(
+                                          customkey(key),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ],
+                          headingRowHeight:
+                              customMaxHeight(dataTable.keys.first),
+                        ),
+                        content: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: DataTable(
                             columnSpacing: 20.0,
                             columns: dataTable.keys
                                 .map(
@@ -116,102 +152,61 @@ class _TabStickyHeaderLayoutState extends State<TabStickyHeaderLayout> {
                                     label: ConstrainedBox(
                                       constraints: const BoxConstraints(
                                         maxWidth: 130,
-                                        // maxHeight: customMaxHeight(key),
                                       ),
-                                      //  SET max width,
-                                      child: Text(customkey(key),
-                                          textAlign: TextAlign.center,
-                                          softWrap: true,
-                                          maxLines: 2,
-                                          // style: const TextStyle(
-                                          //     fontWeight: FontWeight.bold),
-                                          overflow: TextOverflow.clip),
+                                      child: Text(
+                                        customkey(key),
+                                        textAlign: TextAlign.center,
+                                        softWrap: true,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.clip,
+                                      ),
                                     ),
                                   ),
                                 )
                                 .toList(),
                             rows: readdata(dataTable),
-                            headingRowHeight:
-                                customMaxHeight(dataTable.keys.first),
                           ),
-                        ];
-                      } else if (snapshot.hasError) {
-                        children = const <Widget>[
-                          Icon(
-                            Icons.error_outline,
-                            color: Colors.red,
-                            size: 60,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 16),
-                            child: Text('Error'),
-                          ),
-                        ];
-                      } else {
-                        children = const <Widget>[
-                          SizedBox(
-                            width: 60,
-                            height: 60,
-                            child: CircularProgressIndicator(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 16),
-                            child: Text('Awaiting result...'),
-                          )
-                        ];
-                      }
-                      return Center(
+                        ),
+                      ),
+                    ];
+
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: children,
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                      return const Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: children,
+                          children: [
+                            Icon(
+                              Icons.error_outline,
+                              color: Colors.red,
+                              size: 60,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 16),
+                              child: Text('An error occurred. Please try again later.'),
+                            ),
+                          ],
                         ),
                       );
-                    },
-                  ),
-                ),
+                    } else {
+                    // Loading indicator
+                    return const CircularProgressIndicator();
+                  }
+                },
               ),
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }
 }
 
 
-// class _TablayoutState extends State<Tablayout> {
-  
-
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: LayoutBuilder(
-//         builder: ((context, constraints) => SingleChildScrollView(
-//               scrollDirection: Axis.horizontal,
-//               child: ConstrainedBox(
-//                 constraints: BoxConstraints(
-//                   minHeight: constraints.maxHeight,
-//                 ),
-//                 child: SingleChildScrollView(
-//                   child: DataTable(
-//                       columnSpacing: 20.0,
-//                       columns: data_table.keys
-//                           .map(
-//                             (key) => DataColumn(
-//                               label: ConstrainedBox(
-//                                 constraints: const BoxConstraints(
-//                                     maxWidth: 150), //SET max width,
-//                                 child:
-//                                     Text(key, overflow: TextOverflow.ellipsis),
-//                               ),
-//                             ),
-//                           )
-//                           .toList(),
-//                       rows: readdata(data_table)),
-//                 ),
-//               ),
-//             )),
-//       ),
-//     );
-//   }
-// }

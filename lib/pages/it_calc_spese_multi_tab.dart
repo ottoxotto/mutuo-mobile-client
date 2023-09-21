@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/styles.dart';
-import 'package:mutuo_mobile_app/templates/tab_layout.dart';
+import 'package:mutuo_mobile_app/templates/tab_sticky_header_layout.dart';
 
 import '../templates/appbar_layout.dart';
 
@@ -60,7 +60,7 @@ class _ITCalcSpeseMultiTabPageState extends State<ITCalcSpeseMultiTabPage> {
         ],
         onTap: _onItemTapped,
       ),
-      body: TabLayout(apicall: apicall),
+      body: TabStickyHeaderLayout(apicall: apicall),
     );
   }
 }
