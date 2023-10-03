@@ -7,8 +7,9 @@ Function eq = const ListEquality().equals;
 
 class ITBodyCalcRataRataFissaLayout extends StatefulWidget {
   final String finalResponse;
+  final String language;
 
-  const ITBodyCalcRataRataFissaLayout({Key? key, required this.finalResponse})
+  const ITBodyCalcRataRataFissaLayout({Key? key, required this.finalResponse, required this.language})
       : super(key: key);
 
   @override
@@ -38,39 +39,43 @@ class _ITBodyCalcRataRataFissaLayoutState
           children: <Widget>[
             InputRow(
               formKeyNumb: 0,
-              cellTitle: "Finanziamento",
+              cellTitle: "InputFinanziamento",
               iconName: "euro1",
               initialText: '',
               formKeyName: formKeysITrata,
               valueType: 'euro',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 1,
-              cellTitle: "Tasso di Interesse",
+              cellTitle: "InputTasso",
               iconName: "percentage1",
               initialText: '',
               formKeyName: formKeysITrata,
               valueType: 'percentage',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 2,
-              cellTitle: "Rata",
+              cellTitle: "InputRata",
               iconName: "calculator1",
               initialText: '',
               formKeyName: formKeysITrata,
               valueType: 'euro',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 3,
-              cellTitle: "Durata Anni Tasso Fisso",
+              cellTitle: "InputAnniTassoFisso",
               iconName: "hourglass2",
               initialText: '',
               formKeyName: formKeysITrata,
               valueType: 'years',
               disableFlag: false,
+              language: widget.language,
             ),
             // const Divider(
             //   height: 50,
@@ -78,7 +83,7 @@ class _ITBodyCalcRataRataFissaLayoutState
             //   color: Colors.white,
             // ),
             // OutputRow(
-            //   cellTitle: "Rata Mensile",
+            //   cellTitle: "OutputRata",
             //   iconName: "wallet1",
             //   cellValue: widget.finalResponse,
             //   valueType: 'euro',

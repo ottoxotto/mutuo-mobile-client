@@ -6,14 +6,16 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
-import 'package:mutuo_mobile_app/templates/appbar_layout.dart';
+import 'package:mutuo_mobile_app/templates/appbar_language_layout.dart';
 import 'package:mutuo_mobile_app/templates/body_calc_spese_layout.dart';
 import 'package:mutuo_mobile_app/templates/botnavbarnotch_animated_layout.dart';
 
 Function eq = const ListEquality().equals;
 
 class ITCalcSpesePage extends StatefulWidget {
-  const ITCalcSpesePage({Key? key}) : super(key: key);
+  final String language;
+
+  const ITCalcSpesePage({Key? key, required this.language}) : super(key: key);
 
   @override
   State<ITCalcSpesePage> createState() => _ITCalcSpesePageState();
@@ -36,10 +38,16 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
 
   @override
   Widget build(BuildContext context) {
+    String currentLanguage = appLanguage; // Initial language selection
+    void handleLanguageChange(String newLanguage) {
+      setState(() {
+        currentLanguage = newLanguage;
+      });
+    }
     return Scaffold(
         // backgroundColor: Styles.scaffoldBackgroundColor,
-        appBar: const AppBarLayout(title: "Calcola Spese in Italia"),
-        body: ITBodyCalcSpeseLayout(finalResponse: finalResponse),
+        appBar: AppBarLanguageLayout(pageName: widget.runtimeType.toString(), onLanguageChanged: handleLanguageChange),
+        body: ITBodyCalcSpeseLayout(finalResponse: finalResponse, language: currentLanguage),
         floatingActionButton: SizedBox(
           height: 80.0,
           width: 80.0,
@@ -66,7 +74,7 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
                         decoded["TotCosti"]["0"].toStringAsFixed(0);
                     finalResponse[2] =
                         decoded["SpesaTotIniziale"]["0"].toStringAsFixed(0);
-                    ITBodyCalcSpeseLayout(finalResponse: finalResponse);
+                    ITBodyCalcSpeseLayout(finalResponse: finalResponse, language: currentLanguage);
                     blink = true;
                     BotNavBarNotchAnimatedLayout(flagBlink: blink);
                   });
@@ -97,7 +105,7 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
                           decoded["TotCosti"]["0"].toStringAsFixed(0);
                       finalResponse[2] =
                           decoded["SpesaTotIniziale"]["0"].toStringAsFixed(0);
-                      ITBodyCalcSpeseLayout(finalResponse: finalResponse);
+                      ITBodyCalcSpeseLayout(finalResponse: finalResponse, language: currentLanguage);
                       blink = true;
                     });
                   }

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/templates/button_generic_layout.dart';
 
 class DEBodySelectLayout extends StatefulWidget {
-  const DEBodySelectLayout({Key? key}) : super(key: key);
+  final String language;
+
+  const DEBodySelectLayout({Key? key, required this.language}) : super(key: key);
 
   @override
   State<DEBodySelectLayout> createState() => _DEBodySelectLayoutState();
@@ -11,24 +13,27 @@ class DEBodySelectLayout extends StatefulWidget {
 class _DEBodySelectLayoutState extends State<DEBodySelectLayout> {
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           ButtonGeneric(
             buttonlink: "DEcalcRata",
-            buttonname: "Calcola Rata",
+            buttonname: "BtnCalcolaRata",
             buttonlogo: "house1",
+            language: widget.language,
           ),
           ButtonGeneric(
             buttonlink: "DEcalcSpese",
-            buttonname: "Calcola Spese",
+            buttonname: "BtnCalcolaSpese",
             buttonlogo: "payment1",
+            language: widget.language,
           ),
           ButtonGeneric(
             buttonlink: "DEselGrafici",
-            buttonname: "Grafici",
+            buttonname: "BtnGrafici",
             buttonlogo: "bars1",
+            language: widget.language,
           ),
         ],
       ),

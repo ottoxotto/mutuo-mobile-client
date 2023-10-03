@@ -6,6 +6,16 @@ import 'package:mutuo_mobile_app/styles.dart';
 import "package:mutuo_mobile_app/globals.dart";
 import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 
+String btnLabel(btnName, language){
+  Map<String, dynamic> labelTitles;
+  if (language == "it"){
+    labelTitles = labelTitlesIT;
+  }
+  else {
+    labelTitles = labelTitlesEN;
+  }
+  return labelTitles[btnName];
+}
 class InputRow extends StatefulWidget {
   final String cellTitle;
   final String iconName;
@@ -14,6 +24,8 @@ class InputRow extends StatefulWidget {
   final String valueType;
   final List<GlobalKey<FormState>> formKeyName;
   final bool disableFlag;
+  final String language; // Add this parameter
+
 
   // final ValueNotifier<String> aValueNotifier; // Add this line
 
@@ -25,7 +37,8 @@ class InputRow extends StatefulWidget {
     required this.initialText,
     required this.formKeyName,
     required this.valueType,
-    required this.disableFlag,
+    required this.disableFlag, 
+    required this.language,
     // required this.aValueNotifier, // Add this line
   }) : super(key: key);
 
@@ -98,7 +111,7 @@ class _InputRowState extends State<InputRow> {
       print("InitState InputRow: text = $userInput");
       print("InitState InputRow _inputFormatter: $_inputFormatter");
     }
-    userEntry[widget.cellTitle] = userInput.text;
+    userEntry[btnLabel(widget.cellTitle, widget.language)] = userInput.text;
   }
 
   @override
@@ -128,7 +141,7 @@ class _InputRowState extends State<InputRow> {
       print("didUpdateWidget InputRow: text = $userInput");
       print("didUpdateWidget InputRow _inputFormatter: $_inputFormatter");
     }
-    userEntry[widget.cellTitle] = userInput.text;
+    userEntry[btnLabel(widget.cellTitle, widget.language)] = userInput.text;
   }
 
   @override
@@ -193,7 +206,7 @@ class _InputRowState extends State<InputRow> {
               child: SizedBox(
                 width: 110,
                 child: Text(
-                  widget.cellTitle,
+                  btnLabel(widget.cellTitle, widget.language),
                   style: const TextStyle(
                     fontSize: 15,
                   ),
@@ -222,7 +235,7 @@ class _InputRowState extends State<InputRow> {
                     return null;
                   },
                   onChanged: (value) {
-                    userEntry[widget.cellTitle] = value;
+                    userEntry[btnLabel(widget.cellTitle, widget.language)] = value;
                   },
                   decoration: InputDecoration(
                     focusColor: Colors.red,

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mutuo_mobile_app/templates/appbar_layout.dart';
+import 'package:mutuo_mobile_app/globals.dart';
+import 'package:mutuo_mobile_app/templates/appbar_language_layout.dart';
 
 import 'package:mutuo_mobile_app/templates/body_de_calc_rata_select_layout.dart';
 
 class DECalcRataSelectPage extends StatefulWidget {
-  const DECalcRataSelectPage({Key? key}) : super(key: key);
+  final String language;
+
+  const DECalcRataSelectPage({Key? key, required this.language}) : super(key: key);
 
   @override
   State<DECalcRataSelectPage> createState() => _DECalcRataSelectPageState();
@@ -13,10 +16,16 @@ class DECalcRataSelectPage extends StatefulWidget {
 class _DECalcRataSelectPageState extends State<DECalcRataSelectPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    String currentLanguage = appLanguage; // Initial language selection
+    void handleLanguageChange(String newLanguage) {
+      setState(() {
+        currentLanguage = newLanguage;
+      });
+    }
+    return Scaffold(
       // backgroundColor: Styles.scaffoldBackgroundColor,
-      appBar: AppBarLayout(title: "Calcola Rata"),
-      body: DEBodyCalcRataSelectLayout(),
+      appBar: AppBarLanguageLayout(pageName: widget.runtimeType.toString(), onLanguageChanged: handleLanguageChange),
+      body: DEBodyCalcRataSelectLayout(language: currentLanguage),
       // bottomNavigationBar: BotNavBarLayout()
     );
   }

@@ -6,7 +6,120 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:mutuo_mobile_app/styles.dart';
-import 'package:sticky_headers/sticky_headers.dart';
+import 'package:table_sticky_headers/table_sticky_headers.dart';
+
+List<int> countWords(String inputString) {
+  int maxwordlength = 0;
+  if (inputString.isEmpty) {
+    return [0, 0]; // Handle the case of an empty string
+  }
+
+  // Split the input string into words
+  final words = inputString.split(' ');
+
+  // Initialize a count variable
+  int wordcount = 0;
+
+  // Iterate through the words and count those with more than 2 characters
+  for (String word in words) {
+    if (word.length > maxwordlength) {
+      maxwordlength = word.length;
+    }
+      wordcount++;
+  }
+
+  return [wordcount, maxwordlength];
+}
+
+List<double> calcColumnWidth(Map<dynamic, dynamic> inputMap) {
+  List<double> widths = [];
+  var firstRow = extractFirstRow(inputMap);
+  double width = 0;
+  if (inputMap.isNotEmpty) {
+    for (var value in firstRow) {
+      // Calculate the width for each column based on your criteria.
+      // For example, you can set a default width or calculate it dynamically.
+      // double width = width; // Set a default width
+      // if (value.length <=12) {
+      //   width = value.length*10+5;
+      // } else if (value.length <= 30) {
+      //   width = value.length*3+5;
+      // }
+      
+      if (countWords(value)[0] == 1) {
+        width = countWords(value)[1]*10*1+5;
+      } else if (countWords(value)[0] == 2) {
+        width = value.length*10*1+5;
+        // width = 80;
+      } else if (countWords(value)[0] == 3) {
+        width = value.length*10*1+5;
+      } else if (countWords(value)[0] >= 4) {
+        width = value.length*10*0.75+5;
+      }
+
+      if (firstRow.length == 2) {
+        width = 200;
+      }
+      // You can adjust the width calculation logic here based on your needs.
+      widths.add(width);
+    }
+  }
+
+  return widths;
+}
+
+List<String> extractFirstRow(Map<dynamic, dynamic> inputMap) {
+  List<String> firstRowValues = [];
+  if (inputMap.isNotEmpty) {
+    inputMap.forEach((key, value) {
+        // Save keys as firstRowValues
+        firstRowValues.add(key.toString());
+    });
+  }
+  return firstRowValues;
+}
+
+
+List<String> extractFirstColumn(Map<dynamic, dynamic> inputMap) {
+  List<String> firstColumnIndices = [];
+  if (inputMap.isNotEmpty) {
+    final Map<dynamic, dynamic> firstRow = inputMap[inputMap.keys.first];
+    for (var key in firstRow.keys) {
+      firstColumnIndices.add(key.toString());
+    }
+  }
+  return firstColumnIndices;
+}
+
+
+
+
+
+
+
+List<List<String>> mapToListOfLists(Map<dynamic, dynamic> inputMap) {
+  List<List<String>> result = [];
+
+  // Iterate through the map
+  inputMap.forEach((key, value) {
+    List<String> row = [];
+
+    // Convert key to string
+    // String keyString = key.toString();
+    // row.add(keyString);
+
+    value.forEach((key, value) {
+      // Convert value to string
+      String valueString = value.toString();
+      row.add(valueString);
+    });   
+
+    result.add(row);
+  });
+
+  return result;
+}
+
 
 String customkey(key) {
   String customKey;
@@ -87,126 +200,129 @@ class _TabStickyHeaderLayoutState extends State<TabStickyHeaderLayout> {
     return Scaffold(
       backgroundColor: Styles.secondaryColor,
       body: LayoutBuilder(
-        builder: (context, constraints) => SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: constraints.maxHeight,
-            ),
-            child: SingleChildScrollView(
-              child: FutureBuilder<Map>(
-                future: callApI(widget.apicall),
-                builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
-                  if (snapshot.hasData) {
-                    // Extract the table data
-                    Map dataTable = snapshot.data!;
-                    List<Widget> children = [
-                      // Wrap DataTable with StickyHeader
-                      StickyHeader(
-                        header: DataTable(
-                          columnSpacing: 20.0,
-                          columns: dataTable.keys
-                              .map(
-                                (key) => DataColumn(
-                                  label: ConstrainedBox(
-                                    constraints: const BoxConstraints(
-                                      maxWidth: 130,
-                                    ),
-                                    child: Text(
-                                      customkey(key),
-                                      textAlign: TextAlign.center,
-                                      softWrap: true,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.clip,
-                                    ),
-                                  ),
+        builder: ((context, constraints) => SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
+                ),
+                child: SingleChildScrollView(
+                  child: FutureBuilder<Map>(
+                    future: callApI(widget.apicall),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<Map> snapshot) {
+                      List<Widget> children;
+                      if (snapshot.hasData) {
+                        children = <Widget>[
+                          SizedBox(
+                            height: constraints.maxHeight,
+                            width: constraints.maxWidth,
+                            child: StickyHeadersTable(
+                              cellDimensions: CellDimensions.variableColumnWidth(
+                                columnWidths: calcColumnWidth(dataTable), 
+                                contentCellHeight: 56, 
+                                stickyLegendWidth: 0, 
+                                stickyLegendHeight: 56
                                 ),
-                              )
-                              .toList(),
-                          rows: [
-                            DataRow(
-                              cells: dataTable.keys
-                                  .map(
-                                    (key) => DataCell(
-                                      Center(
-                                        child: Text(
-                                          customkey(key),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
+                              cellAlignments: const CellAlignments.uniform(Alignment.center),
+                              columnsLength: dataTable.length,
+                              rowsLength: dataTable[dataTable.keys.first].length,
+                              columnsTitleBuilder: (int index) {
+                                // print("extractFirstRow0: ${extractFirstRow(dataTable)}");
+                                // print("extractFirstRow1: ${extractFirstRow(dataTable)[index]}");
+                                return Text(extractFirstRow(dataTable)[index]);
+                              },
+                              rowsTitleBuilder: (int index) {
+                                // print("extractFirstColumn0: ${extractFirstColumn(dataTable)}");
+                                // print("extractFirstColumn1: ${extractFirstColumn(dataTable)[index]}");
+                                // return Text(extractFirstColumn(dataTable)[index]);
+                                return const Text("");
+                              },
+                              contentCellBuilder: (int columnIndex, int rowIndex) {
+                                // print("mapToListOfLists0: ${mapToListOfLists(dataTable)}");
+                                // print("mapToListOfLists1: ${mapToListOfLists(dataTable)[columnIndex][rowIndex]}");
+                                return Text(mapToListOfLists(dataTable)[columnIndex][rowIndex]);
+                              },
                             ),
-                          ],
-                          headingRowHeight:
-                              customMaxHeight(dataTable.keys.first),
-                        ),
-                        content: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: DataTable(
-                            columnSpacing: 20.0,
-                            columns: dataTable.keys
-                                .map(
-                                  (key) => DataColumn(
-                                    label: ConstrainedBox(
-                                      constraints: const BoxConstraints(
-                                        maxWidth: 130,
-                                      ),
-                                      child: Text(
-                                        customkey(key),
-                                        textAlign: TextAlign.center,
-                                        softWrap: true,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.clip,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                                .toList(),
-                            rows: readdata(dataTable),
                           ),
-                        ),
-                      ),
-                    ];
-
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: children,
-                      ),
-                    );
-                  } else if (snapshot.hasError) {
-                      return const Center(
+                        ];
+                      } else if (snapshot.hasError) {
+                        children = const <Widget>[
+                          Icon(
+                            Icons.error_outline,
+                            color: Colors.red,
+                            size: 60,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 16),
+                            child: Text('Error'),
+                          ),
+                        ];
+                      } else {
+                        children = const <Widget>[
+                          SizedBox(
+                            width: 60,
+                            height: 60,
+                            child: CircularProgressIndicator(),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 16),
+                            child: Text('Awaiting result...'),
+                          )
+                        ];
+                      }
+                      return Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.error_outline,
-                              color: Colors.red,
-                              size: 60,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 16),
-                              child: Text('An error occurred. Please try again later.'),
-                            ),
-                          ],
+                          children: children,
                         ),
                       );
-                    } else {
-                    // Loading indicator
-                    return const CircularProgressIndicator();
-                  }
-                },
+                    },
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
+            )),
       ),
     );
   }
 }
 
 
+// class _TablayoutState extends State<Tablayout> {
+  
+
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: LayoutBuilder(
+//         builder: ((context, constraints) => SingleChildScrollView(
+//               scrollDirection: Axis.horizontal,
+//               child: ConstrainedBox(
+//                 constraints: BoxConstraints(
+//                   minHeight: constraints.maxHeight,
+//                 ),
+//                 child: SingleChildScrollView(
+//                   child: DataTable(
+//                       columnSpacing: 20.0,
+//                       columns: data_table.keys
+//                           .map(
+//                             (key) => DataColumn(
+//                               label: ConstrainedBox(
+//                                 constraints: const BoxConstraints(
+//                                     maxWidth: 150), //SET max width,
+//                                 child:
+//                                     Text(key, overflow: TextOverflow.ellipsis),
+//                               ),
+//                             ),
+//                           )
+//                           .toList(),
+//                       rows: readdata(data_table)),
+//                 ),
+//               ),
+//             )),
+//       ),
+//     );
+//   }
+// }

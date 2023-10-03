@@ -10,8 +10,10 @@ Function eq = const ListEquality().equals;
 
 class DEBodyCalcSpeseLayout extends StatefulWidget {
   final List<String> finalResponse;
+  final String language;
 
-  const DEBodyCalcSpeseLayout({Key? key, required this.finalResponse})
+
+  const DEBodyCalcSpeseLayout({Key? key, required this.finalResponse, required this.language})
       : super(key: key);
 
   @override
@@ -84,12 +86,13 @@ class _DEBodyCalcSpeseLayoutState extends State<DEBodyCalcSpeseLayout> {
             ),
             InputRow(
               formKeyNumb: 0,
-              cellTitle: "Prezzo Immobile",
+              cellTitle: "InputPrezzo",
               iconName: "euro1",
               initialText: '',
               formKeyName: formKeysDEspese,
               valueType: 'euro',
               disableFlag: false,
+              language: widget.language,
             ),
             // OutputRow(
             //   cellTitle: "Grunderwerbsteuer",
@@ -99,39 +102,43 @@ class _DEBodyCalcSpeseLayoutState extends State<DEBodyCalcSpeseLayout> {
             // ),
             InputRow(
               formKeyNumb: 1,
-              cellTitle: "Grunderwerbsteuer",
+              cellTitle: "InputGrunderwerbsteuer",
               iconName: "percentage1",
               initialText: grunderwerbsteuerValue, // Use the value
               formKeyName: formKeysDEspese,
               valueType: 'percentage',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 2,
-              cellTitle: "Grundbuchkosten",
+              cellTitle: "InputGrundbuchkosten",
               iconName: "percentage1",
               initialText: '0.005',
               formKeyName: formKeysDEspese,
               valueType: 'percentage',
               disableFlag: true,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 3,
-              cellTitle: "Notarkosten",
+              cellTitle: "InputNotarkosten",
               iconName: "percentage1",
               initialText: '0.015',
               formKeyName: formKeysDEspese,
               valueType: 'percentage',
               disableFlag: true,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 4,
-              cellTitle: "Maklergebühren",
+              cellTitle: "InputMaklergebühren",
               iconName: "percentage1",
               initialText: '',
               formKeyName: formKeysDEspese,
               valueType: 'percentage',
               disableFlag: false,
+              language: widget.language,
             ),
             const Divider(
               height: 50,
@@ -139,10 +146,11 @@ class _DEBodyCalcSpeseLayoutState extends State<DEBodyCalcSpeseLayout> {
               color: Colors.white,
             ),
             OutputRow(
-              cellTitle: "Tot. Uscite Iniziali",
+              cellTitle: "OutputUsciteTot",
               iconName: "pig1",
               cellValue: widget.finalResponse[0],
               valueType: 'euro',
+              language: widget.language,
             ),
             Container(
               padding: const EdgeInsets.only(bottom: 40),

@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 
+String btnLabel(btnName, language){
+  Map<String, dynamic> labelTitles;
+  if (language == "it"){
+    labelTitles = labelTitlesIT;
+  }
+  else {
+    labelTitles = labelTitlesEN;
+  }
+  return labelTitles[btnName];
+}
 class OutputRow extends StatefulWidget {
   final String cellTitle;
   final String cellValue;
   final String valueType;
   final String iconName;
+  final String language; // Add this parameter
+
 
   const OutputRow(
       {Key? key,
       required this.cellTitle,
       required this.iconName,
       required this.cellValue,
-      required this.valueType})
+      required this.valueType, 
+      required this.language})
       : super(key: key);
 
   @override
@@ -119,7 +133,7 @@ class _OutputRowState extends State<OutputRow> {
             Flexible(
               flex: 3,
               child: Text(
-                widget.cellTitle,
+                btnLabel(widget.cellTitle, widget.language),
                 style: const TextStyle(
                   fontSize: 15,
                 ),

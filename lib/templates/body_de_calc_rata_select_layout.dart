@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/templates/button_generic_layout.dart';
 
 class DEBodyCalcRataSelectLayout extends StatefulWidget {
-  const DEBodyCalcRataSelectLayout({Key? key}) : super(key: key);
+  final String language;
+
+  const DEBodyCalcRataSelectLayout({Key? key, required this.language}) : super(key: key);
 
   @override
   State<DEBodyCalcRataSelectLayout> createState() =>
@@ -13,24 +15,27 @@ class _DEBodyCalcRataSelectLayoutState
     extends State<DEBodyCalcRataSelectLayout> {
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           ButtonGeneric(
             buttonlink: "DEcalcRataAnniCalc",
-            buttonname: "Calcola su X Anni",
-            buttonlogo: "house1",
+            buttonname: "BtnRataXAnni",
+            buttonlogo: "house1", 
+            language: widget.language,
           ),
           ButtonGeneric(
             buttonlink: "DEcalcRataRataFissa",
-            buttonname: "Fissa la Rata",
+            buttonname: "BtnRataFissa",
             buttonlogo: "payment1",
+            language: widget.language,
           ),
           ButtonGeneric(
             buttonlink: "DEcalcRataRimborsoCap",
-            buttonname: "Fissa il Rimborso del Capitale",
+            buttonname: "BtnRimborsoCap",
             buttonlogo: "bars1",
+            language: widget.language,
           ),
         ],
       ),

@@ -1,6 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flag/flag.dart';
+import 'package:mutuo_mobile_app/globals.dart';
+
+String header(String language) {
+  if (language == "it") {
+    return "Dove stai comprando?";
+  }
+  else {
+    return "Where are you buying?";
+  }
+}
+
+
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -17,13 +29,13 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Row(
+          Row(
             children: <Widget>[
               Expanded(
                 child: Text(
-                  "Dove stai comprando?",
+                  header(appLanguage),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20.0,
                   ),
                 ),

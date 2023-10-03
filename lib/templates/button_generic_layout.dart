@@ -2,20 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 
+String btnLabel(btnName, language){
+  Map<String, dynamic> labelTitles;
+  if (language == "it"){
+    labelTitles = labelTitlesIT;
+  }
+  else {
+    labelTitles = labelTitlesEN;
+  }
+  return labelTitles[btnName];
+}
 class ButtonGeneric extends StatelessWidget {
   final String buttonname;
   final String buttonlink;
   final String buttonlogo;
+  final String language; // Add this parameter
+
 
   const ButtonGeneric(
       {Key? key,
       required this.buttonname,
       required this.buttonlink,
-      required this.buttonlogo})
+      required this.buttonlogo, 
+      required this.language})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // String label = btnLabel(buttonname); // Pass the language to the label function
     return Container(
       alignment: Alignment.center,
       margin: EdgeInsets.fromLTRB(
@@ -76,7 +90,7 @@ class ButtonGeneric extends StatelessWidget {
             Flexible(
               flex: 4,
               child: Text(
-                buttonname,
+                btnLabel(buttonname, language),
                 style: const TextStyle(
                   fontSize: 20,
                 ),

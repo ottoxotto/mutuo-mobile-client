@@ -9,8 +9,9 @@ Function eq = const ListEquality().equals;
 
 class ITBodyCalcSpeseLayout extends StatefulWidget {
   final List<String> finalResponse;
+  final String language;
 
-  const ITBodyCalcSpeseLayout({Key? key, required this.finalResponse})
+  const ITBodyCalcSpeseLayout({Key? key, required this.finalResponse, required this.language})
       : super(key: key);
 
   @override
@@ -52,57 +53,63 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
             ),
             InputRow(
               formKeyNumb: 0,
-              cellTitle: "Prezzo Immobile",
+              cellTitle: "InputPrezzo",
               iconName: "euro1",
               initialText: '',
               formKeyName: formKeysITspese,
               valueType: 'euro',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 1,
-              cellTitle: "Percentuale Mutuo",
+              cellTitle: "InputPercMutuo",
               iconName: "percentage1",
               initialText: '',
               formKeyName: formKeysITspese,
               valueType: 'percentage',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 2,
-              cellTitle: "Percentuale Agenzia",
+              cellTitle: "InputPercAgenzia",
               iconName: "percentage1",
               initialText: '',
               formKeyName: formKeysITspese,
               valueType: 'percentage',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 3,
-              cellTitle: "Spese di Istruttoria",
+              cellTitle: "InputIstruttoria",
               iconName: "payment1",
               initialText: "",
               formKeyName: formKeysITspese,
               valueType: 'percentage-euro',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 4,
-              cellTitle: "Assicurazioni",
+              cellTitle: "InputAssicurazioni",
               iconName: "payment1",
               initialText: '',
               formKeyName: formKeysITspese,
               valueType: 'euro',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 5,
-              cellTitle: "Spese di Perizia",
+              cellTitle: "InputPerizia",
               iconName: "payment1",
               initialText: '',
               formKeyName: formKeysITspese,
               valueType: 'euro',
               disableFlag: false,
+              language: widget.language,
             ),
             const Divider(
               height: 50,
@@ -110,22 +117,25 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
               color: Colors.white,
             ),
             OutputRow(
-              cellTitle: "Anticipo Mutuo",
+              cellTitle: "OutputAnticipo",
               iconName: "anticipo2",
               cellValue: widget.finalResponse[0],
               valueType: 'euro',
+              language: widget.language,
             ),
             OutputRow(
-              cellTitle: "Spese Iniziali",
+              cellTitle: "OutputSpese",
               iconName: "sack1",
               cellValue: widget.finalResponse[1],
               valueType: 'euro',
+              language: widget.language,
             ),
             OutputRow(
-              cellTitle: "Tot. Uscite Iniziali",
+              cellTitle: "OutputUsciteTot",
               iconName: "pig1",
               cellValue: widget.finalResponse[2],
               valueType: 'euro',
+              language: widget.language,
             ),
             Container(
               padding: const EdgeInsets.only(bottom: 40),

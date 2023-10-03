@@ -8,8 +8,10 @@ Function eq = const ListEquality().equals;
 
 class DEBodyCalcRataAnniCalcLayout extends StatefulWidget {
   final String finalResponse;
+  final String language;
 
-  const DEBodyCalcRataAnniCalcLayout({Key? key, required this.finalResponse})
+
+  const DEBodyCalcRataAnniCalcLayout({Key? key, required this.finalResponse, required this.language})
       : super(key: key);
 
   @override
@@ -39,57 +41,63 @@ class _DEBodyCalcRataAnniCalcLayoutState
           children: <Widget>[
             InputRow(
               formKeyNumb: 0,
-              cellTitle: "Finanziamento",
+              cellTitle: "InputFinanziamento",
               iconName: "euro1",
               initialText: '',
               formKeyName: formKeysDErata,
               valueType: 'euro',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 1,
-              cellTitle: "Tasso di Interesse",
+              cellTitle: "InputTasso",
               iconName: "percentage1",
               initialText: '',
               formKeyName: formKeysDErata,
               valueType: 'percentage',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 2,
-              cellTitle: "Anni per Calcolo Mutuo",
+              cellTitle: "InputAnniCalc",
               iconName: "calculator1",
               initialText: '',
               formKeyName: formKeysDErata,
               valueType: 'years',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 3,
-              cellTitle: "Durata Anni Tasso Fisso",
+              cellTitle: "InputAnniTassoFisso",
               iconName: "hourglass2",
               initialText: '',
               formKeyName: formKeysDErata,
               valueType: 'years',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 4,
-              cellTitle: "Maxi-Rata Annuale",
+              cellTitle: "InputMaxiRata",
               iconName: "sack1",
               initialText: '',
               formKeyName: formKeysDErata,
               valueType: 'euro',
               disableFlag: false,
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 5,
-              cellTitle: "N° Mensilitá prima della Maxi-Rata",
+              cellTitle: "InputMeseMaxiRata",
               iconName: "payment1",
               initialText: '',
               formKeyName: formKeysDErata,
               valueType: 'years',
               disableFlag: false,
+              language: widget.language,
             ),
             const Divider(
               height: 50,
@@ -97,10 +105,11 @@ class _DEBodyCalcRataAnniCalcLayoutState
               color: Colors.white,
             ),
             OutputRow(
-              cellTitle: "Rata Mensile",
+              cellTitle: "OutputRata",
               iconName: "wallet1",
               cellValue: widget.finalResponse,
               valueType: 'euro',
+              language: widget.language,
             ),
             // ElevatedButton(
             //   onPressed: () async {

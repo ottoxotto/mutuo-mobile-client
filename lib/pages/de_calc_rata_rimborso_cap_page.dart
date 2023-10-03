@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
-import 'package:mutuo_mobile_app/templates/appbar_layout.dart';
+import 'package:mutuo_mobile_app/templates/appbar_language_layout.dart';
 import 'package:mutuo_mobile_app/templates/body_de_calc_rata_rimborso_cap_layout.dart';
 import 'package:mutuo_mobile_app/templates/botnavbarnotch_animated_layout.dart';
 
 Function eq = const ListEquality().equals;
 
 class DECalcRataRimborsoCapPage extends StatefulWidget {
-  const DECalcRataRimborsoCapPage({Key? key}) : super(key: key);
+  final String language;
+
+  const DECalcRataRimborsoCapPage({Key? key, required this.language}) : super(key: key);
 
   @override
   State<DECalcRataRimborsoCapPage> createState() =>
@@ -33,10 +35,16 @@ class DECalcRataRimborsoCapPageState extends State<DECalcRataRimborsoCapPage> {
 
   @override
   Widget build(BuildContext context) {
+    String currentLanguage = appLanguage; // Initial language selection
+    void handleLanguageChange(String newLanguage) {
+      setState(() {
+        currentLanguage = newLanguage;
+      });
+    }
     return Scaffold(
         // backgroundColor: Styles.scaffoldBackgroundColor,
-        appBar: const AppBarLayout(title: "Calcola Rata in Germania"),
-        body: DEBodyCalcRataRimborsoCapLayout(finalResponse: finalResponse),
+        appBar: AppBarLanguageLayout(pageName: widget.runtimeType.toString(), onLanguageChanged: handleLanguageChange),
+        body: DEBodyCalcRataRimborsoCapLayout(finalResponse: finalResponse, language: currentLanguage),
         floatingActionButton: SizedBox(
           height: 80.0,
           width: 80.0,
@@ -59,8 +67,7 @@ class DECalcRataRimborsoCapPageState extends State<DECalcRataRimborsoCapPage> {
                   dataTable = decoded;
                   setState(() {
                     finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
-                    DEBodyCalcRataRimborsoCapLayout(
-                        finalResponse: finalResponse);
+                    DEBodyCalcRataRimborsoCapLayout(finalResponse: finalResponse, language: currentLanguage);
                     blink = true;
                     BotNavBarNotchAnimatedLayout(flagBlink: blink);
                   });
@@ -87,8 +94,7 @@ class DECalcRataRimborsoCapPageState extends State<DECalcRataRimborsoCapPage> {
                     dataTable = decoded;
                     setState(() {
                       finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
-                      DEBodyCalcRataRimborsoCapLayout(
-                          finalResponse: finalResponse);
+                      DEBodyCalcRataRimborsoCapLayout(finalResponse: finalResponse, language: currentLanguage);
                       blink = true;
                     });
                   }

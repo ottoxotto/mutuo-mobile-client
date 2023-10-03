@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/pages/de_calc_rata_anni_calc_page.dart';
 import 'package:mutuo_mobile_app/pages/de_calc_rata_multi_tab.dart';
 import 'package:mutuo_mobile_app/pages/de_calc_rata_rata_fissa_page.dart';
@@ -33,9 +35,16 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
+    String systemLocale = Intl.systemLocale;
+    if (systemLocale == "it_IT") {
+      appLanguage = "it";
+    }
+    else {
+      appLanguage = "en";
+    }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Admin Panel',
@@ -50,24 +59,24 @@ class MyApp extends StatelessWidget {
       routes: {
         "/splash": (context) => const SplashScreen(),
         "/home": (context) => const Home(),
-        "/IT": (context) => const ITSelectPage(),
-        "/DE": (context) => const DESelectPage(),
+        "/IT": (context) => ITSelectPage(language: appLanguage),
+        "/DE": (context) => DESelectPage(language: appLanguage),
         // "/ITcalcRata": (context) => const ITCalcRataPage(),
-        "/ITcalcRata": (context) => const ITCalcRataSelectPage(),
-        "/ITcalcSpese": (context) => const ITCalcSpesePage(),
-        "/ITcalcRataAnniCalc": (context) => const ITCalcRataAnniCalcPage(),
-        "/ITcalcRataRataFissa": (context) => const ITCalcRataRataFissaPage(),
+        "/ITcalcRata": (context) => ITCalcRataSelectPage(language: appLanguage),
+        "/ITcalcSpese": (context) => ITCalcSpesePage(language: appLanguage),
+        "/ITcalcRataAnniCalc": (context) => ITCalcRataAnniCalcPage(language: appLanguage),
+        "/ITcalcRataRataFissa": (context) => ITCalcRataRataFissaPage(language: appLanguage),
         "/ITcalcRataRimborsoCap": (context) =>
-            const ITCalcRataRimborsoCapPage(),
+            ITCalcRataRimborsoCapPage(language: appLanguage),
         "/ITcalcRataTable": (context) => const ITCalcRataMultiTabPage(),
         "/ITcalcSpeseTable": (context) => const ITCalcSpeseMultiTabPage(),
         "/ITselGrafici": (context) => const ITSelectGraphPage(),
-        "/DEcalcRata": (context) => const DECalcRataSelectPage(),
-        "/DEcalcSpese": (context) => const DECalcSpesePage(),
-        "/DEcalcRataAnniCalc": (context) => const DECalcRataAnniCalcPage(),
-        "/DEcalcRataRataFissa": (context) => const DECalcRataRataFissaPage(),
+        "/DEcalcRata": (context) => DECalcRataSelectPage(language: appLanguage),
+        "/DEcalcSpese": (context) => DECalcSpesePage(language: appLanguage),
+        "/DEcalcRataAnniCalc": (context) => DECalcRataAnniCalcPage(language: appLanguage),
+        "/DEcalcRataRataFissa": (context) => DECalcRataRataFissaPage(language: appLanguage),
         "/DEcalcRataRimborsoCap": (context) =>
-            const DECalcRataRimborsoCapPage(),
+            DECalcRataRimborsoCapPage(language: appLanguage),
         "/DEcalcRataTable": (context) => const DECalcRataMultiTabPage(),
         "/DEcalcSpeseTable": (context) => const DECalcSpeseMultiTabPage(),
         "/DEselGrafici": (context) => const DESelectGraphPage(),
