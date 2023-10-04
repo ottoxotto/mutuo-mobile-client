@@ -8,10 +8,10 @@ Map userEntry = {};
 Map dataTable = {};
 // String finalResponse = "";
 // String baseurl = "https://mutuo-mobile-server.vercel.app"; // PRODUCTION
-String baseurl =
-    "https://mutuo-mobile-server-git-develop-ottoxotto.vercel.app"; // DEV
+// String baseurl =
+    // "https://mutuo-mobile-server-git-develop-ottoxotto.vercel.app"; // DEV
 
-// String baseurl = "http://127.0.0.1:5000"; //localhost
+String baseurl = "http://127.0.0.1:5000"; //localhost
 
 String appLanguage = "";
 
@@ -64,17 +64,17 @@ Map<String, dynamic> labelTitlesIT = {
   "TitleCalcRataPage": "Tipologie di Calcolo",
   "BtnRataXAnni": "Calcola su X Anni",
   "BtnRataFissa": "Fissa la Rata",
-  "BtnRimborsoCap": "Fissa il Rimborso del Capitale",
+  "BtnRimborsoCap": "Fissa l'Ammortamento",
   "TitleCalcRataXAnniPage": "Calcola su X Anni",
   "InputFinanziamento" : "Finanziamento",
   "InputTasso" : "Tasso di Interesse",
   "InputAnniCalc" : "Anni per Calcolo Mutuo",
-  "InputAnniTassoFisso" : "Durata Anni Tasso Fisso",
+  "InputAnniTassoFisso" : "Anni Tasso Fisso",
   "OutputRata" : "Rata Mensile",
   "TitleCalcRataRataFissaPage": "Rata Fissa",
   "InputRata" : "Rata",
-  "TitleCalcRataRimbCapPage": "Rimborso Capitale",
-  "InputRimbCap" : "Rimborso Capitale",
+  "TitleCalcRataRimbCapPage": "Ammortamento Fissato",
+  "InputRimbCap" : "Ammortamento",
   "TitleCalcSpesePage": "Spese di Acquisto",
   "InputPrezzo" : "Prezzo Immobile",
   "InputPercMutuo" : "Percentuale Mutuo",
@@ -110,7 +110,7 @@ Map<String, dynamic> labelTitlesEN = {
   "InputFinanziamento" : "Financing Amount",
   "InputTasso" : "Interest Rate",
   "InputAnniCalc" : "N° of Years for Calculation",
-  "InputAnniTassoFisso" : "Fixed-term duration",
+  "InputAnniTassoFisso" : "Fixed-term Duration",
   "OutputRata" : "Monthly Payment",
   "TitleCalcRataRataFissaPage": "Fixed Monthly Payment",
   "InputRata" : "Monthly Payment",
@@ -119,7 +119,7 @@ Map<String, dynamic> labelTitlesEN = {
   "TitleCalcSpesePage": "Acquisition Costs",
   "InputPrezzo" : "Buying Price",
   "InputPercMutuo" : "Loan-to-Value Ratio",
-  "InputPercAgenzia" : "Percentage for Real Estate Agent",
+  "InputPercAgenzia" : "Real Estate Agent Fees",
   "InputIstruttoria" : "Processing Fees",
   "InputAssicurazioni" : "Insurance Fees",
   "InputPerizia" : "Valuation Fees",

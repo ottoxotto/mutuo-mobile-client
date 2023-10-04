@@ -58,7 +58,7 @@ class ITCalcRataAnniCalcPageState extends State<ITCalcRataAnniCalcPage> {
 
                 if (eq(formBool, [true, true, true, true])) {
                   var url = "$baseurl/outMutuo";
-
+                  userEntry["language"] = currentLanguage;
                   final response = await http.post(Uri.parse(url),
                       headers: httpHeaders, body: json.encode(userEntry));
                   final decoded =
@@ -85,7 +85,7 @@ class ITCalcRataAnniCalcPageState extends State<ITCalcRataAnniCalcPage> {
 
                   if (eq(formBool, [true, true, true, true])) {
                     var url = "$baseurl/outMutuo";
-
+                    userEntry["Language"] = currentLanguage;
                     final response = await http.post(Uri.parse(url),
                         headers: httpHeaders, body: json.encode(userEntry));
                     final decoded =
