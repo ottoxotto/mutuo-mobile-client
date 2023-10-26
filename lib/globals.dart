@@ -15,6 +15,9 @@ String baseurl = "http://127.0.0.1:5000"; //localhost
 
 String appLanguage = "";
 
+// String splashImage = "assets/icons/png/AppLogoback.png";
+String splashImage = "assets/icons/png/AppLogoback2.png";
+
 List<GlobalKey<FormState>> formKeysITrata = [
   GlobalKey<FormState>(),
   GlobalKey<FormState>(),
@@ -74,7 +77,7 @@ Map<String, dynamic> labelTitlesIT = {
   "TitleCalcRataRataFissaPage": "Rata Fissa",
   "InputRata" : "Rata",
   "TitleCalcRataRimbCapPage": "Ammortamento Fissato",
-  "InputRimbCap" : "Ammortamento",
+  "InputRimbCap" : "Tasso di Ammortamento",
   "TitleCalcSpesePage": "Spese di Acquisto",
   "InputPrezzo" : "Prezzo Immobile",
   "InputPercMutuo" : "Percentuale Mutuo",

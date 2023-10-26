@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:mutuo_mobile_app/globals.dart';
 // import 'package:lottie/lottie.dart';
 import 'package:mutuo_mobile_app/pages/home_page.dart';
 import 'package:mutuo_mobile_app/styles.dart';
@@ -13,12 +14,12 @@ class SplashScreen extends StatelessWidget {
     return AnimatedSplashScreen(
         // splash: Lottie.asset('assets/loading-circles.json'),
         splash: 
-          const Column(
+          Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image(
                     image:
-                      AssetImage("assets/icons/png/AppLogoback.png"),
+                      AssetImage(splashImage),
                   ),
                   // Image.asset("assets/math.png"),
                   // Text('InvestImmo', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Styles.whiteColor),)
