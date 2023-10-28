@@ -45,6 +45,7 @@ class DECalcRataAnniCalcPageState extends State<DECalcRataAnniCalcPage> {
     void handleLanguageChange(String newLanguage) {
       setState(() {
         currentLanguage = newLanguage;
+        userEntry = {};
         if (currentLanguage == "it"){
           rataLbl = "Rata €"; 
         } else {

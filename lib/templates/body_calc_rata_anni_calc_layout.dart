@@ -24,7 +24,16 @@ class _ITBodyCalcRataAnniCalcLayoutState
   String entry = "";
   final _formkey = GlobalKey<FormState>();
   List<bool> formBool = [];
+  String previousLanguage = ""; // Define previousLanguage here
 
+  String checkReset(String language, String output) {
+    if (language != previousLanguage) {
+      previousLanguage = language; // Store the current language
+      return ""; // Return an empty string to reset the cellValue
+    } else {
+      return output; // Use the existing cellValue
+    }
+  }
   // static final Map<String, String> httpHeaders = {
   //   HttpHeaders.contentTypeHeader: "application/json",
   //   "Connection": "Keep-Alive",
@@ -87,7 +96,7 @@ class _ITBodyCalcRataAnniCalcLayoutState
             OutputRow(
               cellTitle: "OutputRata",
               iconName: "wallet1",
-              cellValue: widget.finalResponse,
+              cellValue: checkReset(widget.language,widget.finalResponse),
               valueType: 'euro',
               language: widget.language,
             ),

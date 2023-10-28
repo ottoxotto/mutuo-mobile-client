@@ -20,6 +20,7 @@ class _ITCalcRataSelectPageState extends State<ITCalcRataSelectPage> {
     void handleLanguageChange(String newLanguage) {
       setState(() {
         currentLanguage = newLanguage;
+        userEntry = {};
       });
     }
     return Scaffold(

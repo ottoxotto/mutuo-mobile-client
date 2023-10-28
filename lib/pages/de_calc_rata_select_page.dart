@@ -20,6 +20,7 @@ class _DECalcRataSelectPageState extends State<DECalcRataSelectPage> {
     void handleLanguageChange(String newLanguage) {
       setState(() {
         currentLanguage = newLanguage;
+        userEntry = {};
       });
     }
     return Scaffold(

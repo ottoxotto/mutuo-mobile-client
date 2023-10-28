@@ -47,6 +47,7 @@ class ITCalcRataRimborsoCapPageState extends State<ITCalcRataRimborsoCapPage> {
     void handleLanguageChange(String newLanguage) {
       setState(() {
         currentLanguage = newLanguage;
+        userEntry = {};
         if (currentLanguage == "it"){
           rataLbl = "Rata €"; 
         } else {

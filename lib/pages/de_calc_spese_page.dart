@@ -48,11 +48,12 @@ class _DECalcSpesePageState extends State<DECalcSpesePage> {
     if (currentLanguage == "it"){
       totCostiLbl = "TotCosti"; 
     } else {
-      totCostiLbl = "TotExpenses";
+      totCostiLbl = "TotCosti";
     }
     void handleLanguageChange(String newLanguage) {
       setState(() {
         currentLanguage = newLanguage;
+        userEntry = {};
         if (currentLanguage == "it"){
           totCostiLbl = "TotCosti"; 
         } else {

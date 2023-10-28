@@ -17,6 +17,7 @@ class _ITSelectPageState extends State<ITSelectPage> {
   void handleLanguageChange(String newLanguage) {
     setState(() {
       currentLanguage = newLanguage;
+      userEntry = {};
     });
   }
   

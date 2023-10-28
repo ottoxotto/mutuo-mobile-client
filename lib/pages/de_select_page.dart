@@ -19,6 +19,7 @@ class _DESelectPageState extends State<DESelectPage> {
     void handleLanguageChange(String newLanguage) {
       setState(() {
         currentLanguage = newLanguage;
+        userEntry = {};
       });
     }
     return Scaffold(

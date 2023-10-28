@@ -55,6 +55,7 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
     void handleLanguageChange(String newLanguage) {
       setState(() {
         currentLanguage = newLanguage;
+        userEntry = {};
         if (currentLanguage == "it"){
           anticipoMutuoLbl = "AnticipoMutuo";
           totCostiLbl = "TotCosti"; 

@@ -22,6 +22,16 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
   String entry = "";
   final _formkey = GlobalKey<FormState>();
   List<bool> formBool = [];
+  String previousLanguage = ""; // Define previousLanguage here
+
+  String checkReset(String language, String output) {
+    if (language != previousLanguage) {
+      previousLanguage = language; // Store the current language
+      return ""; // Return an empty string to reset the cellValue
+    } else {
+      return output; // Use the existing cellValue
+    }
+  }
   // String initRegistro = "2";
   // String initCatastale = "50";
   // String initIpotecaria = "50";
@@ -120,21 +130,21 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
             OutputRow(
               cellTitle: "OutputAnticipo",
               iconName: "anticipo2",
-              cellValue: widget.finalResponse[0],
+              cellValue: checkReset(widget.language,widget.finalResponse[0]),
               valueType: 'euro',
               language: widget.language,
             ),
             OutputRow(
               cellTitle: "OutputSpese",
               iconName: "sack1",
-              cellValue: widget.finalResponse[1],
+              cellValue: checkReset(widget.language,widget.finalResponse[1]),
               valueType: 'euro',
               language: widget.language,
             ),
             OutputRow(
               cellTitle: "OutputUsciteTot",
               iconName: "pig1",
-              cellValue: widget.finalResponse[2],
+              cellValue: checkReset(widget.language,widget.finalResponse[2]),
               valueType: 'euro',
               language: widget.language,
             ),
