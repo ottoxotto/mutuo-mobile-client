@@ -8,11 +8,11 @@ Map userEntry = {};
 Map dataTable = {};
 // String finalResponse = "";
 // String baseurl = "https://mutuo-mobile-server.vercel.app"; // PRODUCTION
-// String baseurl =
-    // "https://mutuo-mobile-server-git-develop-ottoxotto.vercel.app"; // DEV
+String baseurl =
+    "https://mutuo-mobile-server-git-develop-ottoxotto.vercel.app"; // DEV
 
 // String baseurl = "http://127.0.0.1:5000"; //localhost
-String baseurl = "http://192.168.0.88:5000"; //local network ipconfig
+// String baseurl = "http://192.168.0.88:5000"; //local network ipconfig
 
 String appLanguage = "";
 
