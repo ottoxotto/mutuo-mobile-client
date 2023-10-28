@@ -41,15 +41,16 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const InputCombobox(
-              cellTitle: "Tipologia Acquisto",
-              dropDownEntries: [
-                'Prima Casa da Privato',
-                'Seconda Casa da Privato',
-                'Prima Casa da Costruttore',
-                'Seconda Casa da Costruttore',
-                'Seconda Casa di Lusso da Costruttore'
+            InputCombobox(
+              cellTitle: "TipAcquisto",
+              dropDownEntries: const [
+                "PrimaPrivato",
+                "SecondaPrivato",
+                "PrimaCostruttore",
+                "SecondaCostruttore",
+                "SecondaLussoCostruttore"
               ],
+              language: widget.language,
             ),
             InputRow(
               formKeyNumb: 0,
@@ -157,11 +158,11 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
             //       dataTable = decoded;
             //       setState(() {
             //         finalResponse[0] =
-            //             decoded["AnticipoMutuo"]["0"].toStringAsFixed(0);
+            //             decoded[anticipoMutuoLbl]["0"].toStringAsFixed(0);
             //         finalResponse[1] =
-            //             decoded["TotCosti"]["0"].toStringAsFixed(0);
+            //             decoded[totCostiLbl]["0"].toStringAsFixed(0);
             //         finalResponse[2] =
-            //             decoded["SpesaTotIniziale"]["0"].toStringAsFixed(0);
+            //             decoded[spesaTotInizialeLbl]["0"].toStringAsFixed(0);
             //       });
             //     }
             //   },

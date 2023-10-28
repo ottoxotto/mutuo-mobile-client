@@ -68,8 +68,8 @@ class MyApp extends StatelessWidget {
         "/ITcalcRataRataFissa": (context) => ITCalcRataRataFissaPage(language: appLanguage),
         "/ITcalcRataRimborsoCap": (context) =>
             ITCalcRataRimborsoCapPage(language: appLanguage),
-        "/ITcalcRataTable": (context) => const ITCalcRataMultiTabPage(),
-        "/ITcalcSpeseTable": (context) => const ITCalcSpeseMultiTabPage(),
+        "/ITcalcRataTable": (context) => ITCalcRataMultiTabPage(language: appLanguage),
+        "/ITcalcSpeseTable": (context) => ITCalcSpeseMultiTabPage(language: appLanguage),
         "/ITselGrafici": (context) => const ITSelectGraphPage(),
         "/DEcalcRata": (context) => DECalcRataSelectPage(language: appLanguage),
         "/DEcalcSpese": (context) => DECalcSpesePage(language: appLanguage),
@@ -77,8 +77,8 @@ class MyApp extends StatelessWidget {
         "/DEcalcRataRataFissa": (context) => DECalcRataRataFissaPage(language: appLanguage),
         "/DEcalcRataRimborsoCap": (context) =>
             DECalcRataRimborsoCapPage(language: appLanguage),
-        "/DEcalcRataTable": (context) => const DECalcRataMultiTabPage(),
-        "/DEcalcSpeseTable": (context) => const DECalcSpeseMultiTabPage(),
+        "/DEcalcRataTable": (context) => DECalcRataMultiTabPage(language: appLanguage),
+        "/DEcalcSpeseTable": (context) => DECalcSpeseMultiTabPage(language: appLanguage),
         "/DEselGrafici": (context) => const DESelectGraphPage(),
       },
     );

@@ -16,6 +16,5 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 
-09/02/2022
-Cannot Update Plot data
-Problem with Labels in Line_titles --> index starts from 1 instead of 0 and overcome the lenght of Datalabel    
+CALC SPESE FIX LINGUA MANCANTE   
+ADD IN GLOBAL

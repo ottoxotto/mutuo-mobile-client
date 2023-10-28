@@ -26,6 +26,7 @@ class ITCalcRataAnniCalcPageState extends State<ITCalcRataAnniCalcPage> {
   String finalResponse = ""; 
   bool blink = false;
 
+
   static final Map<String, String> httpHeaders = {
     HttpHeaders.contentTypeHeader: "application/json",
     "Connection": "Keep-Alive",
@@ -35,9 +36,21 @@ class ITCalcRataAnniCalcPageState extends State<ITCalcRataAnniCalcPage> {
   @override
   Widget build(BuildContext context) {
     String currentLanguage = appLanguage; // Initial language selection
+    String rataLbl;
+
+    if (currentLanguage == "it"){
+      rataLbl = "Rata €"; 
+    } else {
+      rataLbl = "Installment €";
+    }
     void handleLanguageChange(String newLanguage) {
       setState(() {
         currentLanguage = newLanguage;
+        if (currentLanguage == "it"){
+          rataLbl = "Rata €"; 
+        } else {
+          rataLbl = "Installment €";
+    }
       });
     }
     return Scaffold(
@@ -65,7 +78,7 @@ class ITCalcRataAnniCalcPageState extends State<ITCalcRataAnniCalcPage> {
                       json.decode(response.body) as Map<String, dynamic>;
                   dataTable = decoded;
                   setState(() {
-                    finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
+                    finalResponse = decoded[rataLbl]["1"].toStringAsFixed(2);
                     ITBodyCalcRataAnniCalcLayout(finalResponse: finalResponse, language: currentLanguage);
                     blink = true;
                     BotNavBarNotchAnimatedLayout(flagBlink: blink);
@@ -92,7 +105,7 @@ class ITCalcRataAnniCalcPageState extends State<ITCalcRataAnniCalcPage> {
                         json.decode(response.body) as Map<String, dynamic>;
                     dataTable = decoded;
                     setState(() {
-                      finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
+                      finalResponse = decoded[rataLbl]["1"].toStringAsFixed(2);
                       ITBodyCalcRataAnniCalcLayout(finalResponse: finalResponse, language: currentLanguage);
                       blink = true;                    
                     });

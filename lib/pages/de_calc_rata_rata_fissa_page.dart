@@ -37,9 +37,21 @@ class DECalcRataRataFissaPageState extends State<DECalcRataRataFissaPage> {
   @override
   Widget build(BuildContext context) {
     String currentLanguage = appLanguage; // Initial language selection
+    String rataLbl;
+
+    if (currentLanguage == "it"){
+      rataLbl = "Rata €"; 
+    } else {
+      rataLbl = "Installment €";
+    }
     void handleLanguageChange(String newLanguage) {
       setState(() {
         currentLanguage = newLanguage;
+        if (currentLanguage == "it"){
+          rataLbl = "Rata €"; 
+        } else {
+          rataLbl = "Installment €";
+    }
       });
     }
     return Scaffold(
@@ -60,14 +72,14 @@ class DECalcRataRataFissaPageState extends State<DECalcRataRataFissaPage> {
 
                 if (eq(formBool, [true, true, true, true, true, true])) {
                   var url = "$baseurl/outMutuoDE";
-
+                  userEntry["Language"] = currentLanguage;
                   final response = await http.post(Uri.parse(url),
                       headers: httpHeaders, body: json.encode(userEntry));
                   final decoded =
                       json.decode(response.body) as Map<String, dynamic>;
                   dataTable = decoded;
                   setState(() {
-                    finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
+                    finalResponse = decoded[rataLbl]["1"].toStringAsFixed(2);
                     DEBodyCalcRataRataFissaLayout(finalResponse: finalResponse, language: currentLanguage);
                     blink = true;
                   });
@@ -86,14 +98,14 @@ class DECalcRataRataFissaPageState extends State<DECalcRataRataFissaPage> {
 
                   if (eq(formBool, [true, true, true, true, true, true])) {
                     var url = "$baseurl/outMutuoDE";
-
+                    userEntry["Language"] = currentLanguage;
                     final response = await http.post(Uri.parse(url),
                         headers: httpHeaders, body: json.encode(userEntry));
                     final decoded =
                         json.decode(response.body) as Map<String, dynamic>;
                     dataTable = decoded;
                     setState(() {
-                      finalResponse = decoded["Rata €"]["1"].toStringAsFixed(2);
+                      finalResponse = decoded[rataLbl]["1"].toStringAsFixed(2);
                       DEBodyCalcRataRataFissaLayout(finalResponse: finalResponse, language: currentLanguage);
                       blink = true;
                     });

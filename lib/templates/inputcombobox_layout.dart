@@ -2,13 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:mutuo_mobile_app/globals.dart';
 
+String btnLabel(btnName, language){
+  Map<String, dynamic> labelTitles;
+  if (language == "it"){
+    labelTitles = labelTitlesIT;
+  }
+  else {
+    labelTitles = labelTitlesEN;
+  }
+  return labelTitles[btnName];
+}
+
+List<String> listLabel(list, language){
+  Map<String, dynamic> labelTitles;
+  List<String> outlist = [];
+  if (language == "it"){
+    labelTitles = labelTitlesIT;
+  }
+  else {
+    labelTitles = labelTitlesEN;
+  }
+  for (var item in list) {
+    outlist.add(labelTitles[item]);
+  }
+  return outlist;
+  
+
+}
 class InputCombobox extends StatefulWidget {
   final List<String> dropDownEntries;
   final String cellTitle;
+  final String language; // Add this parameter
   const InputCombobox({
     Key? key,
     required this.dropDownEntries,
     required this.cellTitle,
+    required this.language,
   }) : super(key: key);
 
   @override
@@ -22,8 +51,20 @@ class _InputComboboxState extends State<InputCombobox> {
   @override
   void initState() {
     super.initState();
-    userEntry[widget.cellTitle] = widget.dropDownEntries[0];
-    selectedValue = widget.dropDownEntries[0];
+    userEntry[btnLabel(widget.cellTitle, widget.language)] = btnLabel(widget.dropDownEntries[0],widget.language) ;
+    selectedValue = listLabel(widget.dropDownEntries,widget.language)[0];
+  }
+  
+  @override
+  void didUpdateWidget(covariant InputCombobox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.language != oldWidget.language) {
+      // Language has changed, update the widget's state
+      userEntry[btnLabel(widget.cellTitle, widget.language)] = btnLabel(
+          widget.dropDownEntries[0], widget.language);
+      selectedValue =
+          listLabel(widget.dropDownEntries, widget.language)[0];
+    }
   }
 
   @override
@@ -58,7 +99,7 @@ class _InputComboboxState extends State<InputCombobox> {
               // flex: 2,
               child: Form(
                 child: DropdownButtonFormField(
-                  items: widget.dropDownEntries
+                  items: listLabel(widget.dropDownEntries, widget.language)
                       .map<DropdownMenuItem<String>>((String selectedValue) {
                     return DropdownMenuItem<String>(
                       value: selectedValue,
@@ -72,7 +113,7 @@ class _InputComboboxState extends State<InputCombobox> {
                   onChanged: (String? newValue) {
                     setState(() {
                       selectedValue = newValue!;
-                      userEntry[widget.cellTitle] = selectedValue;
+                      userEntry[btnLabel(widget.cellTitle, widget.language)] = selectedValue;
                     });
                   },
                   decoration: InputDecoration(

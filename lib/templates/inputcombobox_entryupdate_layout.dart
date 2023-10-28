@@ -3,16 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:mutuo_mobile_app/globals.dart';
 
+// String btnLabel(btnName, language){
+//   Map<String, dynamic> labelTitles;
+//   if (language == "it"){
+//     labelTitles = labelTitlesIT;
+//   }
+//   else {
+//     labelTitles = labelTitlesEN;
+//   }
+//   return labelTitles[btnName];
+// }
 class InputComboboxEntryUpdate extends StatefulWidget {
   final List<String> dropDownEntries;
   final String cellTitle;
   final Function(String) onEntrySelected; // Add this line
+  final String language; // Add this parameter
+
 
   const InputComboboxEntryUpdate({
     Key? key,
     required this.dropDownEntries,
     required this.cellTitle,
     required this.onEntrySelected, // Add this line
+    required this.language,
   }) : super(key: key);
 
   @override

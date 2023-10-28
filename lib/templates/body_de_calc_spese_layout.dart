@@ -73,6 +73,7 @@ class _DEBodyCalcSpeseLayoutState extends State<DEBodyCalcSpeseLayout> {
                 'Mecklenburg-Vorpommern',
                 'Schleswig-Holstein',
               ],
+              language: widget.language,
               onEntrySelected: (selectedValue) {
                 setState(() {
                   entry = selectedValue; // Update the entry value

@@ -8,10 +8,11 @@ Map userEntry = {};
 Map dataTable = {};
 // String finalResponse = "";
 // String baseurl = "https://mutuo-mobile-server.vercel.app"; // PRODUCTION
-String baseurl =
-    "https://mutuo-mobile-server-git-develop-ottoxotto.vercel.app"; // DEV
+// String baseurl =
+    // "https://mutuo-mobile-server-git-develop-ottoxotto.vercel.app"; // DEV
 
 // String baseurl = "http://127.0.0.1:5000"; //localhost
+String baseurl = "http://192.168.0.88:5000"; //local network ipconfig
 
 String appLanguage = "";
 
@@ -79,6 +80,7 @@ Map<String, dynamic> labelTitlesIT = {
   "TitleCalcRataRimbCapPage": "Ammortamento Fissato",
   "InputRimbCap" : "Tasso di Ammortamento",
   "TitleCalcSpesePage": "Spese di Acquisto",
+  "TitleCalcPianoPage": "Piano di Ammortamento",
   "InputPrezzo" : "Prezzo Immobile",
   "InputPercMutuo" : "Percentuale Mutuo",
   "InputPercAgenzia" : "Percentuale Agenzia",
@@ -94,7 +96,12 @@ Map<String, dynamic> labelTitlesIT = {
   "InputGrundbuchkosten" : "Grundbuchkosten",
   "InputNotarkosten" : "Notarkosten",
   "InputMaklergebühren" : "Maklergebühren",
-
+  "TipAcquisto" : "Tipologia Acquisto",
+  "PrimaPrivato" : "Prima Casa da Privato",
+  "SecondaPrivato" : "Seconda Casa da Privato",
+  "PrimaCostruttore" : "Prima Casa da Costruttore",
+  "SecondaCostruttore" : "Seconda Casa da Costruttore",
+  "SecondaLussoCostruttore" : "Seconda Casa di Lusso da Costruttore",
 
 };
 
@@ -102,24 +109,25 @@ Map<String, dynamic> labelTitlesEN = {
   "Homepage": "Where are you buying?",
   "TitleSelectPageIT": "Mortgage in Italy",
   "TitleSelectPageDE": "Mortgage in Germany",
-  "BtnCalcolaRata": "Calculate Monthly Payment",
+  "BtnCalcolaRata": "Calculate Installment",
   "BtnCalcolaSpese": "Calculate Expenses",
   "BtnGrafici": "Graphs",
   "TitleCalcRataPage": "Calculation Methods",
   "BtnRataXAnni": "Calculate over X Years",
-  "BtnRataFissa": "Fix the Monthly Payment",
+  "BtnRataFissa": "Fix the Installment",
   "BtnRimborsoCap": "Fix the Amortization Rate",
   "TitleCalcRataXAnniPage": "Calculate on X Years",
   "InputFinanziamento" : "Financing Amount",
   "InputTasso" : "Interest Rate",
   "InputAnniCalc" : "N° of Years for Calculation",
   "InputAnniTassoFisso" : "Fixed-term Duration",
-  "OutputRata" : "Monthly Payment",
-  "TitleCalcRataRataFissaPage": "Fixed Monthly Payment",
-  "InputRata" : "Monthly Payment",
+  "OutputRata" : "Installment",
+  "TitleCalcRataRataFissaPage": "Fixed Installment",
+  "InputRata" : "Installment",
   "TitleCalcRataRimbCapPage": "Fixed Amortization Rate",
   "InputRimbCap" : "Amortization Rate",
   "TitleCalcSpesePage": "Acquisition Costs",
+  "TitleCalcPianoPage": "Amortization Plan",
   "InputPrezzo" : "Buying Price",
   "InputPercMutuo" : "Loan-to-Value Ratio",
   "InputPercAgenzia" : "Real Estate Agent Fees",
@@ -135,6 +143,13 @@ Map<String, dynamic> labelTitlesEN = {
   "InputGrundbuchkosten" : "Grundbuchkosten",
   "InputNotarkosten" : "Notarkosten",
   "InputMaklergebühren" : "Maklergebühren",
+  "TipAcquisto" : "Purchase Type",
+  "PrimaPrivato" : "1st House from Private",
+  "SecondaPrivato" : "2nd House from Private",
+  "PrimaCostruttore" : "1st House from Developer",
+  "SecondaCostruttore" : "2nd House from Developer",
+  "SecondaLussoCostruttore" : "2nd Luxury House from Developer",
+
  
 
 

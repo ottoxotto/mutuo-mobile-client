@@ -43,9 +43,21 @@ class _DECalcSpesePageState extends State<DECalcSpesePage> {
     //   print("Build: finalResponse = $finalResponse");
     // }
     String currentLanguage = appLanguage; // Initial language selection
+    String totCostiLbl;
+
+    if (currentLanguage == "it"){
+      totCostiLbl = "TotCosti"; 
+    } else {
+      totCostiLbl = "TotExpenses";
+    }
     void handleLanguageChange(String newLanguage) {
       setState(() {
         currentLanguage = newLanguage;
+        if (currentLanguage == "it"){
+          totCostiLbl = "TotCosti"; 
+        } else {
+          totCostiLbl = "TotCosti";
+        }
       });
     }
     return Scaffold( 
@@ -65,7 +77,7 @@ class _DECalcSpesePageState extends State<DECalcSpesePage> {
               }
               if (eq(formBool, [true, true, true, true, true])) {
                 var url = "$baseurl/outSpeseDE";
-
+                userEntry["Language"] = currentLanguage;
                 final response = await http.post(Uri.parse(url),
                     headers: httpHeaders, body: json.encode(userEntry));
                 final decoded =
@@ -73,7 +85,7 @@ class _DECalcSpesePageState extends State<DECalcSpesePage> {
                 dataTable = decoded;
                 setState(() {
                   finalResponse[0] =
-                      decoded["TotCosti"]["0"].toStringAsFixed(0);
+                      decoded[totCostiLbl]["0"].toStringAsFixed(0);
                   DEBodyCalcSpeseLayout(finalResponse: finalResponse, language: currentLanguage);
                   blink = true;
                   BotNavBarNotchAnimatedLayout(flagBlink: blink);
@@ -92,7 +104,7 @@ class _DECalcSpesePageState extends State<DECalcSpesePage> {
                 }
                 if (eq(formBool, [true, true, true, true, true])) {
                   var url = "$baseurl/outSpeseDE";
-
+                  userEntry["Language"] = currentLanguage;
                   final response = await http.post(Uri.parse(url),
                       headers: httpHeaders, body: json.encode(userEntry));
                   final decoded =
@@ -100,7 +112,7 @@ class _DECalcSpesePageState extends State<DECalcSpesePage> {
                   dataTable = decoded;
                   setState(() {
                     finalResponse[0] =
-                        decoded["TotCosti"]["0"].toStringAsFixed(0);
+                        decoded[totCostiLbl]["0"].toStringAsFixed(0);
                     DEBodyCalcSpeseLayout(finalResponse: finalResponse, language: currentLanguage);
                     blink = true;
                   });

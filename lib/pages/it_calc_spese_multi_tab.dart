@@ -1,12 +1,25 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:mutuo_mobile_app/templates/tab_layout.dart';
 
 import '../templates/appbar_layout.dart';
 
+String btnLabel(btnName, language){
+  Map<String, dynamic> labelTitles;
+  if (language == "it"){
+    labelTitles = labelTitlesIT;
+  }
+  else {
+    labelTitles = labelTitlesEN;
+  }
+  return labelTitles[btnName];
+}
+
 class ITCalcSpeseMultiTabPage extends StatefulWidget {
-  const ITCalcSpeseMultiTabPage({Key? key}) : super(key: key);
+  final String language; // Add this parameter
+  const ITCalcSpeseMultiTabPage({Key? key, required this.language}) : super(key: key);
 
   @override
   State<ITCalcSpeseMultiTabPage> createState() =>
@@ -40,7 +53,7 @@ class _ITCalcSpeseMultiTabPageState extends State<ITCalcSpeseMultiTabPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarLayout(title: "Dettagli Costi Mutuo"),
+      appBar: AppBarLayout(title: btnLabel("TitleCalcSpesePage", widget.language)),
       bottomNavigationBar: CurvedNavigationBar(
         height: 50,
         color: Styles.whiteColor,

@@ -39,9 +39,31 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
   @override
   Widget build(BuildContext context) {
     String currentLanguage = appLanguage; // Initial language selection
+    String anticipoMutuoLbl;
+    String totCostiLbl;
+    String spesaTotInizialeLbl;
+
+    if (currentLanguage == "it"){
+      anticipoMutuoLbl = "AnticipoMutuo";
+      totCostiLbl = "TotCosti"; 
+      spesaTotInizialeLbl = "SpesaTotIniziale";
+    } else {
+      anticipoMutuoLbl = "AnticipoMutuo";
+      totCostiLbl = "TotCosti"; 
+      spesaTotInizialeLbl = "SpesaTotIniziale";
+    }
     void handleLanguageChange(String newLanguage) {
       setState(() {
         currentLanguage = newLanguage;
+        if (currentLanguage == "it"){
+          anticipoMutuoLbl = "AnticipoMutuo";
+          totCostiLbl = "TotCosti"; 
+          spesaTotInizialeLbl = "SpesaTotIniziale";
+        } else {
+          anticipoMutuoLbl = "AnticipoMutuo";
+          totCostiLbl = "TotCosti"; 
+          spesaTotInizialeLbl = "SpesaTotIniziale";
+        }
       });
     }
     return Scaffold(
@@ -61,7 +83,7 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
                 }
                 if (eq(formBool, [true, true, true, true, true, true])) {
                   var url = "$baseurl/outSpese";
-
+                  userEntry["Language"] = currentLanguage;
                   final response = await http.post(Uri.parse(url),
                       headers: httpHeaders, body: json.encode(userEntry));
                   final decoded =
@@ -69,11 +91,11 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
                   dataTable = decoded;
                   setState(() {
                     finalResponse[0] =
-                        decoded["AnticipoMutuo"]["0"].toStringAsFixed(0);
+                        decoded[anticipoMutuoLbl]["0"].toStringAsFixed(0);
                     finalResponse[1] =
-                        decoded["TotCosti"]["0"].toStringAsFixed(0);
+                        decoded[totCostiLbl]["0"].toStringAsFixed(0);
                     finalResponse[2] =
-                        decoded["SpesaTotIniziale"]["0"].toStringAsFixed(0);
+                        decoded[spesaTotInizialeLbl]["0"].toStringAsFixed(0);
                     ITBodyCalcSpeseLayout(finalResponse: finalResponse, language: currentLanguage);
                     blink = true;
                     BotNavBarNotchAnimatedLayout(flagBlink: blink);
@@ -92,7 +114,7 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
                   }
                   if (eq(formBool, [true, true, true, true, true, true])) {
                     var url = "$baseurl/outSpese";
-
+                    userEntry["Language"] = currentLanguage;
                     final response = await http.post(Uri.parse(url),
                         headers: httpHeaders, body: json.encode(userEntry));
                     final decoded =
@@ -100,11 +122,11 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
                     dataTable = decoded;
                     setState(() {
                       finalResponse[0] =
-                          decoded["AnticipoMutuo"]["0"].toStringAsFixed(0);
+                          decoded[anticipoMutuoLbl]["0"].toStringAsFixed(0);
                       finalResponse[1] =
-                          decoded["TotCosti"]["0"].toStringAsFixed(0);
+                          decoded[totCostiLbl]["0"].toStringAsFixed(0);
                       finalResponse[2] =
-                          decoded["SpesaTotIniziale"]["0"].toStringAsFixed(0);
+                          decoded[spesaTotInizialeLbl]["0"].toStringAsFixed(0);
                       ITBodyCalcSpeseLayout(finalResponse: finalResponse, language: currentLanguage);
                       blink = true;
                     });

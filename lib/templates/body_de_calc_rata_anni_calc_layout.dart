@@ -129,7 +129,7 @@ class _DEBodyCalcRataAnniCalcLayoutState
             //       dataTable = decoded;
             //       setState(() {
             //         widget.finalResponse =
-            //             decoded["Rata €"]["1"].toStringAsFixed(2);
+            //             decoded[rataLbl]["1"].toStringAsFixed(2);
             //       });
             //     }
             //     formBool.clear();

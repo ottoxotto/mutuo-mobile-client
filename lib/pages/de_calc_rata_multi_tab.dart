@@ -1,12 +1,24 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:mutuo_mobile_app/templates/tab_layout.dart';
 
 import '../templates/appbar_layout.dart';
 
+String btnLabel(btnName, language){
+  Map<String, dynamic> labelTitles;
+  if (language == "it"){
+    labelTitles = labelTitlesIT;
+  }
+  else {
+    labelTitles = labelTitlesEN;
+  }
+  return labelTitles[btnName];
+}
 class DECalcRataMultiTabPage extends StatefulWidget {
-  const DECalcRataMultiTabPage({Key? key}) : super(key: key);
+  final String language;
+  const DECalcRataMultiTabPage({Key? key, required this.language}) : super(key: key);
 
   @override
   State<DECalcRataMultiTabPage> createState() => _DECalcRataMultiTabPageState();
@@ -39,7 +51,7 @@ class _DECalcRataMultiTabPageState extends State<DECalcRataMultiTabPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarLayout(title: "Piano di Ammortamento"),
+      appBar: AppBarLayout(title: btnLabel("TitleCalcPianoPage", widget.language)),
       bottomNavigationBar: CurvedNavigationBar(
         height: 50,
         color: Styles.whiteColor,
