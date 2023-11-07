@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
 import 'package:mutuo_mobile_app/templates/appbar_language_layout.dart';
-import 'package:mutuo_mobile_app/templates/body_calc_spese_layout.dart';
+import 'package:mutuo_mobile_app/templates/body_it_calc_spese_layout.dart';
 import 'package:mutuo_mobile_app/templates/botnavbarnotch_animated_layout.dart';
 
 Function eq = const ListEquality().equals;
@@ -159,54 +159,3 @@ class _ITCalcSpesePageState extends State<ITCalcSpesePage> {
         bottomNavigationBar: BotNavBarNotchAnimatedLayout(flagBlink: blink));
   }
 }
-
-
-// ElevatedButton(
-//                 onPressed: () {},
-//                 style: ElevatedButton.styleFrom(
-//                     shape: const CircleBorder(),
-//                     padding: EdgeInsets.all(Styles.defaultPaddingHor * 0.1),
-//                     elevation: 50,
-//                     primary: Styles.accentColor,
-//                     onPrimary: Styles.whiteColor,
-//                     shadowColor: Styles.bgColor),
-//                 child: const Image(
-//                   image: AssetImage("assets/icons/png/calculate3.png"),
-//                   width: 50,
-//                   height: 50,
-//                   color: null,
-//                   fit: BoxFit.scaleDown,
-//                   alignment: Alignment.center,
-//                 ),
-//               ),
-
-
-// Material(
-//                       color: Styles.accentColor,
-//                       borderRadius: Styles.defaultBorderRadius,
-//                       child: InkWell(
-//                         splashColor: Styles.whiteColor,
-//                         onTap: () {},
-//                         child: Column(
-//                           mainAxisAlignment: MainAxisAlignment.start,
-//                           children: const <Widget>[
-//                             Image(
-//                               image:
-//                                   AssetImage("assets/icons/png/calculate7.png"),
-//                               width: 40,
-//                               height: 40,
-//                               color: null,
-//                               fit: BoxFit.scaleDown,
-//                               alignment: Alignment.topCenter,
-//                             ),
-//                             Text(
-//                               "Calcola",
-//                               style: TextStyle(
-//                                 fontSize: 10,
-//                                 fontWeight: FontWeight.bold,
-//                               ),
-//                             ), // <-- Text
-//                           ],
-//                         ),
-//                       ),
-//                     ),

@@ -2,9 +2,9 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mutuo_mobile_app/globals.dart';
 import 'package:mutuo_mobile_app/styles.dart';
-import 'package:mutuo_mobile_app/templates/tab_layout.dart';
+import 'package:mutuo_mobile_app/templates/appbar_table_layout.dart';
+import 'package:mutuo_mobile_app/templates/tab_sticky_header_layout.dart';
 
-import '../templates/appbar_layout.dart';
 
 String btnLabel(btnName, language){
   Map<String, dynamic> labelTitles;
@@ -49,11 +49,12 @@ class _ITCalcSpeseMultiTabPageState extends State<ITCalcSpeseMultiTabPage> {
   }
 
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  final ScrollController _tableController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarLayout(title: btnLabel("TitleCalcSpesePage", widget.language)),
+      appBar: AppBarTableLayout(title: btnLabel("TitleCalcSpesePage", widget.language), tableController: _tableController),
       bottomNavigationBar: CurvedNavigationBar(
         height: 50,
         color: Styles.whiteColor,
@@ -73,8 +74,14 @@ class _ITCalcSpeseMultiTabPageState extends State<ITCalcSpeseMultiTabPage> {
         ],
         onTap: _onItemTapped,
       ),
-      body: TabLayout(apicall: apicall),
+      body: TabStickyHeaderLayout(apicall: apicall, tableController: _tableController),
     );
+  }
+  @override
+  void dispose() {
+    // Dispose of the ScrollController to avoid memory leaks
+    _tableController.dispose();
+    super.dispose();
   }
 }
 

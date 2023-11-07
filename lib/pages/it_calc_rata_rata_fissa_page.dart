@@ -9,7 +9,7 @@ import 'package:mutuo_mobile_app/styles.dart';
 import 'package:mutuo_mobile_app/templates/appbar_language_layout.dart';
 import 'package:mutuo_mobile_app/templates/botnavbarnotch_animated_layout.dart';
 
-import '../templates/body_calc_rata_rata_fissa_layout.dart';
+import '../templates/body_it_calc_rata_rata_fissa_layout.dart';
 
 Function eq = const ListEquality().equals;
 

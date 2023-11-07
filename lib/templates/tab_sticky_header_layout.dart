@@ -76,6 +76,16 @@ List<String> extractFirstRow(Map<dynamic, dynamic> inputMap) {
         firstRowValues.add(key.toString());
     });
   }
+  if (firstRowValues[0] == "0" && firstRowValues[1] == "1"){
+    if (appLanguage == "en"){
+      firstRowValues[0] = "Labels";
+      firstRowValues[1] = "Values";
+    }
+    else {
+      firstRowValues[0] = "Parametri";
+      firstRowValues[1] = "Valori";
+    }
+  }
   return firstRowValues;
 }
 
@@ -168,9 +178,11 @@ List<DataRow> readdata(tabella) {
 
 class TabStickyHeaderLayout extends StatefulWidget {
   final String apicall;
-
+  final ScrollController tableController;
+  
   const TabStickyHeaderLayout({
     required this.apicall,
+    required this.tableController,
     Key? key,
   }) : super(key: key);
 
@@ -218,6 +230,7 @@ class _TabStickyHeaderLayoutState extends State<TabStickyHeaderLayout> {
                             height: constraints.maxHeight,
                             width: constraints.maxWidth,
                             child: StickyHeadersTable(
+                              scrollControllers:ScrollControllers(verticalBodyController: widget.tableController),
                               cellDimensions: CellDimensions.variableColumnWidth(
                                 columnWidths: calcColumnWidth(dataTable), 
                                 contentCellHeight: 56, 
@@ -230,7 +243,22 @@ class _TabStickyHeaderLayoutState extends State<TabStickyHeaderLayout> {
                               columnsTitleBuilder: (int index) {
                                 // print("extractFirstRow0: ${extractFirstRow(dataTable)}");
                                 // print("extractFirstRow1: ${extractFirstRow(dataTable)[index]}");
-                                return Text(extractFirstRow(dataTable)[index]);
+                                // return Text(extractFirstRow(dataTable)[index]);
+                                return Column(
+                                  children: <Widget>[
+                                    Container(
+                                      padding: const EdgeInsets.only(top: 10.0), // Add padding at the top
+                                      child: Text(
+                                        extractFirstRow(dataTable)[index],
+                                      ),
+                                    ),
+                                    const Divider(
+                                      height: 28,
+                                      thickness: 1,
+                                      color: Colors.white,
+                                    )
+                                  ]
+                                );
                               },
                               rowsTitleBuilder: (int index) {
                                 // print("extractFirstColumn0: ${extractFirstColumn(dataTable)}");

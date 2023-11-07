@@ -15,6 +15,6 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-
-CALC SPESE FIX LINGUA MANCANTE   
-ADD IN GLOBAL
+# 07/11/23 
+# Modified Table in RataCalc IT to have Frozen Headers w/ Divider + Scroll Up/Down Arrows
+# tab_sticky_header_layout + appbar_table_layout + it_calc_rata_multi_tab

@@ -26,22 +26,14 @@ class _ITBodyCalcSpeseLayoutState extends State<ITBodyCalcSpeseLayout> {
 
   String checkReset(String language, String output) {
     if (language != previousLanguage) {
-      previousLanguage = language; // Store the current language
+      if (output == widget.finalResponse[widget.finalResponse.length-1]) {
+        previousLanguage = language;
+      } // Store the current language
       return ""; // Return an empty string to reset the cellValue
     } else {
       return output; // Use the existing cellValue
     }
   }
-  // String initRegistro = "2";
-  // String initCatastale = "50";
-  // String initIpotecaria = "50";
-  // String initIVA = "0";
-
-  // static final Map<String, String> httpHeaders = {
-  //   HttpHeaders.contentTypeHeader: "application/json",
-  //   "Connection": "Keep-Alive",
-  //   "Keep-Alive": "timeout=5, max=1000"
-  // };
 
   @override
   Widget build(BuildContext context) {
